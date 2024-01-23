@@ -1,0 +1,132 @@
+@font-face {
+  font-family: DIN Next TR Regular;
+  src: url(/fonts/DINNextLTPro-Regular.woff) format('woff'), url(/fonts/DINNextLTPro-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: DIN Next TR Medium;
+  src: url(/fonts/DINNextLTPro-Medium.woff) format('woff'), url(/fonts/DINNextLTPro-Medium.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: DIN Next TR Bold;
+  src: url(/fonts/DINNextLTPro-Bold.woff) format('woff'), url(/fonts/DINNextLTPro-Bold.woff2) format('woff2');
+}
+
+:root {
+  --font-regular: DIN Next TR Regular, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --font-medium: DIN Next TR Medium, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --font-bold: DIN Next TR Bold, -apple-system, system-ui, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+
+  --color-white: white;
+  --color-black: black;
+
+  --color-background2: rgba(248, 250, 253, 0.1);
+  --color-background3: rgba(248, 250, 253, 0.2);
+  --color-background4: rgba(248, 250, 253, 0.28);
+  --color-background5: rgba(248, 250, 253, 0.36);
+  --color-background6: rgba(248, 250, 253, 0.36);
+  --color-foreground1: rgba(248, 250, 253, 0.48);
+  --color-foreground2: rgba(248, 250, 253, 0.56);
+
+  --color-grey1: rgba(92, 92, 92, 0.5);
+  --color-grey2: rgba(92, 92, 92, 0.6);
+  --color-grey3: rgba(92, 92, 92, 0.8);
+  --color-grey4: rgba(92, 92, 92, 1);
+  --color-grey5: rgba(92, 92, 92, 0.3);
+  --color-grey6: rgba(92, 92, 92, 0.35);
+  --color-grey7: rgba(92, 92, 92, 0.4);
+
+
+  --color-primary-blue1: rgba(27, 164, 255, 0.5);
+  --color-primary-blue2: rgba(27, 164, 255, 0.8);
+  --color-primary-blue3: rgba(27, 164, 255, 0.85);
+  --color-primary-blue4: rgba(27, 164, 255, 0.9);
+  --color-secondary-blue1: rgba(27, 164, 255, 0.3);
+  --color-secondary-blue2: rgba(27, 164, 255, 0.35);
+  --color-secondary-blue3: rgba(27, 164, 255, 0.4);
+
+  --color-primary-green1: rgba(19, 255, 128, 0.5);
+  --color-primary-green2: rgba(19, 255, 128, 0.8);
+  --color-primary-green3: rgba(19, 255, 128, 0.85);
+  --color-primary-green4: rgba(19, 255, 128, 0.9);
+  --color-secondary-green1: rgba(19, 255, 128, 0.3);
+  --color-secondary-green2: rgba(19, 255, 128, 0.35);
+  --color-secondary-green3: rgba(19, 255, 128, 0.4);
+
+  --color-primary-red1: rgba(255, 78, 78, 0.5);
+  --color-primary-red2: rgba(255, 78, 78, 0.8);
+  --color-primary-red3: rgba(255, 78, 78, 0.85);
+  --color-primary-red4: rgba(255, 78, 78, 0.9);
+  --color-secondary-red1: rgba(255, 78, 78, 0.3);
+  --color-secondary-red2: rgba(255, 78, 78, 0.35);
+  --color-secondary-red3: rgba(255, 78, 78, 0.4);
+
+  --color-primary-orange1: rgba(255, 177, 24, 0.5);
+  --color-primary-orange2: rgba(255, 177, 24, 0.8);
+  --color-primary-orange3: rgba(255, 177, 24, 0.85);
+  --color-primary-orange4: rgba(255, 177, 24, 0.9);
+  --color-secondary-orange1: rgba(255, 177, 24, 0.3);
+  --color-secondary-orange2: rgba(255, 177, 24, 0.35);
+  --color-secondary-orange3: rgba(255, 177, 24, 0.4);
+
+  --border-radius: 4px;
+  --border-radius-small: 2px;
+  --border-radius-medium: 4px;
+  --border-radius-large: 8px;
+  --border-radius-circle: 50%;
+  --border-radius-pill: 500px;
+
+  --font-size-xxs: 10px;
+  --font-size-xs: 12px;
+  --font-size-s: 14px;
+  --font-size-m: 16px;
+  --font-size-l: 18px;
+  --font-size-xl: 20px;
+  --font-size-xxl: 24px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+
+
+  --max-width: 1200px;
+}
+
+body.light {
+  --color-white: black;
+  --color-black: white;
+
+  --color-background2: rgba(0, 0, 0, 0.1);
+  --color-background3: rgba(0, 0, 0, 0.2);
+  --color-background4: rgba(0, 0, 0, 0.28);
+  --color-background5: rgba(0, 0, 0, 0.36);
+  --color-background6: rgba(0, 0, 0, 0.36);
+  --color-foreground1: rgba(0, 0, 0, 0.48);
+  --color-foreground2: rgba(0, 0, 0, 0.56);
+
+  --color-grey1: rgba(255, 255, 255, 0.5);
+  --color-grey2: rgba(255, 255, 255, 0.6);
+  --color-grey3: rgba(255, 255, 255, 0.8);
+  --color-grey4: rgba(255, 255, 255, 1);
+  --color-grey5: rgba(255, 255, 255, 0.3);
+  --color-grey6: rgba(255, 255, 255, 0.35);
+  --color-grey7: rgba(255, 255, 255, 0.4);
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+.transition {
+  transition: all 0.3s ease;
+}

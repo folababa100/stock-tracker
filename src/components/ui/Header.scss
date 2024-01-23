@@ -1,0 +1,25 @@
+.header {
+  margin: 0 auto;
+  padding: 24px 0;
+  display: flex;
+  max-width: var(--max-width);
+
+  .header-logo {
+    width: 60px;
+  }
+}
+
+.button-theme {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  border-radius: var(--border-radius-circle);
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-white);
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

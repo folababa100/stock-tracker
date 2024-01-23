@@ -1,0 +1,35 @@
+.text-field__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.text-field {
+  font-size: var(--font-size-m);
+  line-height: 22px;
+  border: none;
+  background-color: var(--color-background3);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-large);
+  color: var(--color-white);
+  font-family: inherit;
+  transition: 0.2s;
+
+  &__label {
+    font-weight: var(--font-weight-semi-bold);
+    font-size: var(--font-size-s);
+    line-height: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-white);
+    color: var(--color-white);
+    background-color: var(--color-background2);
+  }
+
+  &::placeholder {
+    color: var(--font-size-s);
+  }
+}
