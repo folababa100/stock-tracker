@@ -20,6 +20,7 @@
 
   --color-white: white;
   --color-black: black;
+  --color-background: rgba(18, 18, 18, 1);
 
   --color-background2: rgba(248, 250, 253, 0.1);
   --color-background3: rgba(248, 250, 253, 0.2);
@@ -28,6 +29,8 @@
   --color-background6: rgba(248, 250, 253, 0.36);
   --color-foreground1: rgba(248, 250, 253, 0.48);
   --color-foreground2: rgba(248, 250, 253, 0.56);
+
+  --color-input-background: rgba(0, 0, 0, 0.9);
 
   --color-grey1: rgba(92, 92, 92, 0.5);
   --color-grey2: rgba(92, 92, 92, 0.6);
@@ -92,11 +95,25 @@
 
 
   --max-width: 1200px;
+
+  --color-error: rgba(148, 1, 1, 1);
+
+  --color-black-all: rgba(0, 0, 0, 1);
+  --color-white-all: rgba(255, 255, 255, 1);
+
+  --color-blue1: rgba(0, 87, 255, 1);
+  --color-blue2: rgba(0, 87, 255, 0.9);
+  --color-blue3: rgba(0, 87, 255, 0.8);
+
+  --color-black1: rgba(0, 0, 0, 0.8);
+  --color-black2: rgba(0, 0, 0, 0.7);
+  --color-black3: rgba(0, 0, 0, 0.6);
 }
 
 body.light {
   --color-white: black;
   --color-black: white;
+  --color-background: white;
 
   --color-background2: rgba(0, 0, 0, 0.1);
   --color-background3: rgba(0, 0, 0, 0.2);
@@ -113,6 +130,13 @@ body.light {
   --color-grey5: rgba(255, 255, 255, 0.3);
   --color-grey6: rgba(255, 255, 255, 0.35);
   --color-grey7: rgba(255, 255, 255, 0.4);
+
+  --color-input-background: rgba(255, 255, 255, 0.9);
+  --color-error: rgba(255, 150, 150, 1);
+
+  --color-black1: rgba(255, 255, 255, 0.8);
+  --color-black2: rgba(255, 255, 255, 0.7);
+  --color-black3: rgba(255, 255, 255, 0.6);
 }
 
 html {
@@ -123,10 +147,17 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--color-black);
+  background-color: var(--color-background);
   color: var(--color-white);
 }
 
-.transition {
-  transition: all 0.3s ease;
+main {
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+#app {
+  font-family: var(--font-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

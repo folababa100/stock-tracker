@@ -1,6 +1,6 @@
 import {useState, useEffect, useCallback} from 'react';
 
-const useTheme = () => {
+export const useTheme = () => {
   const localTheme = localStorage.getItem('theme');
   const [theme, setTheme] = useState(localTheme ?? 'light');
 
@@ -12,6 +12,7 @@ const useTheme = () => {
     document.body.className = newTheme;
   }, [theme]);
 
+  // Prevents flashing of light theme on page load.
   useEffect(() => {
     const timeout = setTimeout(() => {
       document.body.style.transition = 'all 0.3s ease';
@@ -41,5 +42,3 @@ const useTheme = () => {
 
   return { theme, toggleTheme };
 };
-
-export default useTheme;

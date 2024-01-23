@@ -1,14 +1,23 @@
-#app {
-  font-family: var(--font-regular);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  z-index: 100;
 }
 
-main {
-  margin: 0 auto;
-  padding: 1.5rem;
+.skip-link:focus {
+  top: 0;
+}
+
+.form-card {
+  background-color: var(--color-white);
+  color: var(--color-black);
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .error-text {
-  color: var(--color-primary-red4);
+  color: var(--color-error);
 }

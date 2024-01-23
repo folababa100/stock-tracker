@@ -1,18 +1,14 @@
 import React from 'react';
 import 'components/Button/Button.scss';
 
-export enum EButtonAppearance {
-  PRIMARY = "primary",
-  SECONDARY = "secondary",
-  OUTLINED = "outlined",
-}
+type Appearance = 'primary' | 'secondary' | 'danger';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  appearance?: EButtonAppearance;
+  appearance?: Appearance;
   children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ appearance = EButtonAppearance.PRIMARY, children, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ appearance = 'primary', children, ...props }) => {
   return (
     <button className={`button ${appearance}`} {...props}>
       {children}

@@ -49,6 +49,7 @@ const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
         onClick={unsubscribe}
         title={`Unsubscribe from ${isin}`}
         aria-label={`Unsubscribe from ${isin}`}
+        appearance="secondary"
       >
         <FaRegBellSlash size={20} />
         <span className="ml-2 hidden-xs">Unsubscribe</span>

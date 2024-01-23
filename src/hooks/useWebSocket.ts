@@ -14,7 +14,7 @@ enum SubscriptionType {
   Unsubscribe = 'unsubscribe',
 }
 
-const useWebSocket = () => {
+export const useWebSocket = () => {
   const [watchList, setWatchList] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
   // const [error, setError] = useState('');
@@ -80,5 +80,3 @@ const useWebSocket = () => {
     isDuplicate,
   };
 };
-
-export default useWebSocket;

@@ -81,10 +81,14 @@
   }
 }
 
+.transition {
+  transition: all 0.3s ease;
+}
+
 // Accessibility styles
 
 a:focus, button:focus {
-  outline: 3px solid blue; /* Visible focus outline */
+  outline: 2px solid var(--color-blue1);
 }
 
 @media (prefers-reduced-motion: reduce) {

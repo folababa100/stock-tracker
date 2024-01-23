@@ -2,14 +2,13 @@ import React, {FormEvent} from 'react';
 import Header from 'components/Header';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
-import useWebSocket from './hooks/useWebSocket';
-import {FaRegBell} from "react-icons/fa";
+import { useWebSocket, useTheme } from 'hooks';
+import { FaRegBell } from "react-icons/fa";
 
 import './App.css';
 import './styles/utility.scss';
 // import Alert from './components/ui/Alert';
 import Stocks from 'components/stock/List';
-import useTheme from './hooks/useTheme.ts';
 
 const ISIN_LENGTH = 12;
 const ISIN_REGEX = new RegExp(/[a-zA-Z]{2}[a-zA-Z0-9]{9}\d/);
@@ -35,9 +34,11 @@ const App: React.FC = () => {
 
   return (
     <div id="app">
+      {/* Skip link */}
+      <a href="#main" className="skip-link">Skip to content</a>
       <Header toggleTheme={toggleTheme} theme={theme}/>
-      <main className="container">
-        <h1>Stock tracker</h1>
+      <main id="main" className="container">
+        <h1>My stock tracker.</h1>
         <p>
           Get the latest updates on the stocks you are interested in.
         </p>
