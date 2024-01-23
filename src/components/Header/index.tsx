@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.scss';
+import 'components/Header/Header.scss';
 
 interface HeaderProps {
   toggleTheme: () => void;
@@ -13,7 +13,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const isLight = theme === 'light';
   return (
     <header className="header container flex-justify-between flex-center">
-      <a href="/public">
+      <a aria-label="Home link" href="/public">
         <svg className="header-logo" viewBox="0 0 74 33" fill="none" xmlns="http://www.w3.org/2000/svg">
           <title>Trade Republic</title>
           <path
@@ -24,13 +24,17 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           />
         </svg>
       </a>
-      <button className="button-theme flex flex-center" onClick={() => toggleTheme()}>
+      <button
+        type="button"
+        className="button-theme flex flex-center"
+        aria-label="Toggle theme"
+        title="Toggle theme"
+        onClick={() => toggleTheme()}
+      >
         <svg width="40px" height="40px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-          <title>ic_fluent_dark_theme_24_regular</title>
           <desc>Created with Sketch.</desc>
           <g id="🔍-Product-Icons" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
             <g
-              id="ic_fluent_dark_theme_24_regular"
               fill={isLight ? LIGHT_COLOR : DARK_COLOR}
               fillRule="nonzero"
             >

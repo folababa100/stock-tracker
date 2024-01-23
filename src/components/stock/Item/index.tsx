@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'components/ui/form/Button';
+import Button from 'components/Button';
 import { FaRegBellSlash } from "react-icons/fa";
 
 import './Item.scss';
@@ -47,10 +47,10 @@ const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
       </div>
       <Button
         onClick={unsubscribe}
-        // appearance="secondary"
-        // className="stock__button"
+        title={`Unsubscribe from ${isin}`}
+        aria-label={`Unsubscribe from ${isin}`}
       >
-        <FaRegBellSlash />
+        <FaRegBellSlash size={20} />
         <span className="ml-2 hidden-xs">Unsubscribe</span>
       </Button>
     </div>

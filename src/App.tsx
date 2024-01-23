@@ -1,7 +1,7 @@
 import React, {FormEvent} from 'react';
-import Header from 'components/ui/Header';
-import TextField from 'components/ui/form/TextField';
-import Button from 'components/ui/form/Button';
+import Header from 'components/Header';
+import TextField from 'components/TextField';
+import Button from 'components/Button';
 import useWebSocket from './hooks/useWebSocket';
 import {FaRegBell} from "react-icons/fa";
 
@@ -58,6 +58,7 @@ const App: React.FC = () => {
             />
             <Button
               type="submit"
+              title="Subscribe"
               disabled={!isISINValid || !isWebSocketConnected || isDuplicate}
             >
               <FaRegBell size={20} />

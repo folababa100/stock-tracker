@@ -80,3 +80,15 @@
     display: block;
   }
 }
+
+// Accessibility styles
+
+a:focus, button:focus {
+  outline: 3px solid blue; /* Visible focus outline */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animation {
+    animation: none;
+  }
+}
