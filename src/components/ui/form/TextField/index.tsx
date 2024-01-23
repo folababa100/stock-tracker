@@ -8,7 +8,6 @@ interface TextFieldProps {
   placeholder?: string;
   maxlength?: number;
   onChange: (value: string) => void;
-  // onKeyUp: (value: string) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({ value, label, id, placeholder, maxlength, onChange }) => {
@@ -22,7 +21,7 @@ const TextField: React.FC<TextFieldProps> = ({ value, label, id, placeholder, ma
         placeholder={placeholder}
         maxLength={maxlength}
         onChange={(e) => onChange(e.target.value)}
-        // onKeyUp={(e) => onKeyUp(e.target?.value)}
+        required
       />
     </div>
   );

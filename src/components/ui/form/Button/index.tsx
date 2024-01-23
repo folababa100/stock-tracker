@@ -15,9 +15,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<ButtonProps> = ({ appearance = EButtonAppearance.PRIMARY, children, ...props }) => {
   return (
     <button className={`button ${appearance}`} {...props}>
-      <span className="button-content">
-        {children}
-      </span>
+      {children}
     </button>
   );
 };

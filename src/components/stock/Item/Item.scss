@@ -22,10 +22,11 @@
 }
 
 .stock__isin {
-  color: var(--color-text-placeholder);
-  font-size: var(--text-body-s);
+  color: var(--color-white);
+  font-size: var(--font-size-s);
   line-height: 17px;
   margin-bottom: 4px;
+  font-weight: var(--font-weight-semi-bold);
 }
 
 .stock__delimiter {

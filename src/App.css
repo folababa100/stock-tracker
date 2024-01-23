@@ -4,44 +4,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.main {
-  max-width: var(--max-width);
+main {
   margin: 0 auto;
-  padding: 0 24px;
-
-  .helper-text {
-    color: var(--color-text-secondary);
-  }
-
-  .helper-text:not(:first-of-type) {
-    margin-top: 12px;
-  }
-
-  .space__vertical {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .watch-list__items {
-    margin: 44px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  padding: 1.5rem;
 }
 
-@media only screen and (max-width: 480px) {
-  .page_title {
-    font-size: var(--text_body-l);
-    line-height: 29px;
-  }
-
-  .main {
-    padding: 0 16px;
-  }
-
-  .isin__container {
-    margin-top: 32px;
-  }
+.error-text {
+  color: var(--color-primary-red4);
 }

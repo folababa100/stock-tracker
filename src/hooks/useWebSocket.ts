@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 const WS_ENDPOINT = import.meta.env.VITE_WS_ENDPOINT as string;
@@ -17,6 +17,7 @@ enum SubscriptionType {
 const useWebSocket = () => {
   const [watchList, setWatchList] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
+  // const [error, setError] = useState('');
   const [isWebSocketConnected, setIsWebSocketConnected] = useState(true);
   const webSocketSubjectRef = useRef<WebSocketSubject<any> | null>(null);
 
@@ -49,14 +50,6 @@ const useWebSocket = () => {
     }
   };
 
-  const closeConnection = useCallback(() => {
-    const webSocketSubject = webSocketSubjectRef.current;
-    if (!webSocketSubject || webSocketSubject.closed) return;
-    webSocketSubject.unsubscribe();
-    webSocketSubjectRef.current = null;
-    setIsWebSocketConnected(false);
-  }, []);
-
   useEffect(() => {
     // Setting up WebSocket subject to handle data, errors, and connection closure.
     const webSocketSubject: WebSocketSubject<any> = webSocket(WS_ENDPOINT);
@@ -75,14 +68,16 @@ const useWebSocket = () => {
     };
   }, []);
 
+  const isDuplicate = watchList.some((item) => item.isin === value);
+
   return {
     watchList,
     isWebSocketConnected,
     subscribe: (isin: string) => manageSubscription(isin, SubscriptionType.Subscribe),
     unsubscribe: (isin: string) => manageSubscription(isin, SubscriptionType.Unsubscribe),
-    closeConnection,
     setValue,
     value,
+    isDuplicate,
   };
 };
 

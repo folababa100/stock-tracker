@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Button from '../ui/Button';
+import Button from 'components/ui/form/Button';
+import { FaRegBellSlash } from "react-icons/fa";
+
 import './Item.scss';
 
 // Define the types for the props
@@ -48,7 +50,8 @@ const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
         // appearance="secondary"
         // className="stock__button"
       >
-        Unsubscribe
+        <FaRegBellSlash />
+        <span className="ml-2 hidden-xs">Unsubscribe</span>
       </Button>
     </div>
   );

@@ -6,11 +6,13 @@
   transition: 0.2s;
   border-radius: var(--border-radius-small); /* Default border-radius */
   font-size: var(--font-size-m); /* Default font-size */
-  padding: 10px 16px; /* Default padding */
+  padding: 10px 12px; /* Default padding */
+  display: flex;
+  align-items: center;
 
   &.primary {
     background-color: var(--color-white);
-    padding: 13px 20px;
+    padding: 13px 12px;
     color: var(--color-black);
     font-size: var(--font-size-m);
     font-weight: var(--font-weight-semi-bold);
@@ -46,5 +48,15 @@
     cursor: not-allowed;
     opacity: 0.5;
     pointer-events: none;
+  }
+
+//  Reduce padding on small screens
+  @media (min-width: 576px) {
+    padding-left: 16px;
+    padding-right: 16px;
+
+    &.primary {
+      padding: 13px 18px;
+    }
   }
 }
