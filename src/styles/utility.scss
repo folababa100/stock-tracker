@@ -18,6 +18,10 @@
   height: 100%;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
 }
@@ -80,9 +84,9 @@
 
 // Accessibility styles
 
-a:focus, button:focus {
-  outline: 2px solid var(--color-blue1);
-}
+//a:focus, button:focus {
+//  outline: 2px solid var(--color-blue1);
+//}
 
 @media (prefers-reduced-motion: reduce) {
   .animation {

@@ -2,6 +2,7 @@
   "name": "final-challenge-react",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "concurrently \"node server.mjs\" \"vite\"",
     "build": "tsc && vite build",

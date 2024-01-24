@@ -1,16 +1,19 @@
-import {useState, useEffect, useCallback} from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useTheme = () => {
   const localTheme = localStorage.getItem('theme');
-  const [theme, setTheme] = useState(localTheme ?? 'light');
+  const [theme, setTheme] = useState(localTheme ?? 'dark');
 
-  const toggleTheme = useCallback((mode?: string) => {
-    const altTheme = theme === 'light' ? 'dark' : 'light';
-    const newTheme = mode ?? altTheme;
-    localStorage.setItem('theme', newTheme);
-    setTheme(newTheme);
-    document.body.className = newTheme;
-  }, [theme]);
+  const toggleTheme = useCallback(
+    (mode?: string) => {
+      const altTheme = theme === 'light' ? 'dark' : 'light';
+      const newTheme = mode ?? altTheme;
+      localStorage.setItem('theme', newTheme);
+      setTheme(newTheme);
+      document.body.className = newTheme;
+    },
+    [theme],
+  );
 
   // Prevents flashing of light theme on page load.
   useEffect(() => {
@@ -29,7 +32,9 @@ export const useTheme = () => {
 
     // Get user's preference from localStorage or system preference
     const savedTheme = localStorage.getItem('theme');
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const prefersDarkMode = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
     const defaultTheme = savedTheme || (prefersDarkMode ? 'dark' : 'light');
     setTheme(defaultTheme);
     document.body.className = defaultTheme;

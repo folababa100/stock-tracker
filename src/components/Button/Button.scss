@@ -1,16 +1,16 @@
-.button {
+.btn {
   border: none;
   font-family: inherit;
   line-height: 20px;
   cursor: pointer;
   transition: 0.2s;
-  border-radius: var(--border-radius-small); /* Default border-radius */
-  font-size: var(--font-size-m); /* Default font-size */
-  padding: 10px 12px; /* Default padding */
+  border-radius: var(--border-radius-small);
+  font-size: var(--font-size-m);
+  padding: 10px 12px;
   display: flex;
   align-items: center;
 
-  &.primary {
+  &-primary {
     background-color: var(--color-blue1);
     padding: 13px 12px;
     color: var(--color-white-all);
@@ -19,15 +19,15 @@
     border-radius: var(--border-radius-medium);
   }
 
-  &.primary:hover {
+  &-primary:hover {
     background-color: var(--color-blue2);
   }
 
-  &.primary:active {
+  &-primary:active {
     background-color: var(--color-blue3);
   }
 
-  &.secondary {
+  &-secondary {
     background-color: var(--color-black);
     padding: 13px 12px;
     color: var(--color-white);
@@ -36,12 +36,17 @@
     border-radius: var(--border-radius-medium);
   }
 
-  &.secondary:hover {
+  &-secondary:hover {
     background-color: var(--color-black2);
   }
 
-  &.secondary:active {
+  &-secondary:active {
     background-color: var(--color-black3);
+  }
+
+  &-sm {
+    padding: 8px 12px;
+    font-size: var(--font-size-s);
   }
 
   &:disabled {
@@ -50,13 +55,25 @@
     pointer-events: none;
   }
 
-//  Reduce padding on small screens
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border-radius: var(--border-radius-circle);
+  }
+
+  // Increase padding on large screens
   @media (min-width: 576px) {
     padding-left: 16px;
     padding-right: 16px;
 
-    &.primary {
+    &-primary {
       padding: 13px 18px;
+    }
+
+    &-sm {
+      padding: 8px 18px;
     }
   }
 }

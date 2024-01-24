@@ -3,27 +3,28 @@ import Header from 'components/Header';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
 import Stocks from 'components/stock/List';
+import Alert from 'components/Alert';
 
 import { useStock, useTheme } from 'hooks';
 import { FaRegBell } from 'react-icons/fa';
 
 import './App.css';
 import './styles/utility.scss';
-// import Alert from './components/ui/Alert';
 
 const App: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const {
-    isValid,
-    isInvalid,
-    isConnected,
-    isDuplicate,
     value,
     setValue,
+    watchList,
+    error,
     onSubscribe,
     unsubscribe,
     maxLength,
-    watchList,
+    reconnect,
+    isConnected,
+    isConnecting,
+    isReload,
   } = useStock();
 
   return (
@@ -55,22 +56,27 @@ const App: React.FC = () => {
             <Button
               type="submit"
               title="Subscribe"
-              disabled={!isValid || !isConnected || isDuplicate}
+              disabled={!!error || value.length === 0 || !isConnected}
             >
               <FaRegBell size={20} />
               <span className="ml-2 hidden-xs">Subscribe</span>
             </Button>
           </div>
-          {isDuplicate ? (
-            <p className="error-text text-center">
-              You have already subscribed to this ISIN code
-            </p>
-          ) : isInvalid ? (
-            <p className="error-text text-center">
-              Please enter a valid ISIN code
-            </p>
-          ) : null}
+          {error && <p className="error-text">{error}</p>}
         </form>
+        <Alert show={!isConnected} type="warning">
+          {isConnecting
+            ? 'Connecting...'
+            : 'You are not connected to the server.'}
+          <Button
+            variant="secondary"
+            className="btn-sm mt-2"
+            onClick={() => reconnect()}
+            disabled={isConnecting}
+          >
+            {isReload ? 'Reload' : 'Reconnect'}
+          </Button>
+        </Alert>
         <Stocks watchList={watchList} unsubscribe={unsubscribe} />
       </main>
     </div>

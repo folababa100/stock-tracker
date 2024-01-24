@@ -1,7 +1,7 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import './Button.scss';
+import './Alert.scss';
 
 interface AlertProps {
   show: boolean;
@@ -22,9 +22,9 @@ const Alert: React.FC<AlertProps> = ({
       {show && (
         <CSSTransition timeout={500} classNames="alert">
           <div className={`alert alert-${type}`} {...props}>
-            <div className="alert__content">{children}</div>
+            <div className="alert-container">{children}</div>
             {dismissible && (
-              <button className="alert__close">
+              <button className="btn btn-close">
                 <IoMdClose size={20} />
               </button>
             )}

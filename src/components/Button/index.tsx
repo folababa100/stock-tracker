@@ -1,20 +1,22 @@
 import React from 'react';
 import './Button.scss';
 
-type Appearance = 'primary' | 'secondary' | 'danger';
+type ButtonType = 'primary' | 'secondary' | 'danger';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  appearance?: Appearance;
+  variant?: ButtonType;
   children: React.ReactNode;
+  className?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  appearance = 'primary',
+  variant = 'primary',
   children,
+  className,
   ...props
 }) => {
   return (
-    <button className={`button ${appearance}`} {...props}>
+    <button className={`btn btn-${variant} ${className}`} {...props}>
       {children}
     </button>
   );

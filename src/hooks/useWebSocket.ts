@@ -1,24 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { Stock, SubscriptionType, WebSocketState } from 'types';
 
 const WS_ENDPOINT = import.meta.env.VITE_WS_ENDPOINT as string;
-
-// Interface for a stock, including its ISIN and price.
-export interface Stock {
-  isin: string;
-  price: number;
-}
-
-enum SubscriptionType {
-  Subscribe = 'subscribe',
-  Unsubscribe = 'unsubscribe',
-}
 
 export const useWebSocket = () => {
   const [watchList, setWatchList] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
   // const [error, setError] = useState('');
-  const [isConnected, setIsWebSocketConnected] = useState(true);
+  const [webSocketState, setWebSocketState] = useState<WebSocketState>(
+    WebSocketState.Open,
+  );
   const webSocketSubjectRef = useRef<WebSocketSubject<Stock> | null>(null);
 
   // Updates watch list with new stock data or adds new stocks.
@@ -60,23 +52,50 @@ export const useWebSocket = () => {
     webSocketSubjectRef.current = webSocketSubject;
     webSocketSubject.subscribe({
       next: (event: Stock) => updateWatchList(event),
-      error: () => setIsWebSocketConnected(false),
-      complete: () => setIsWebSocketConnected(false),
+      error: () => setWebSocketState(WebSocketState.Closed),
+      complete: () => setWebSocketState(WebSocketState.Closed),
     });
 
     return () => {
       // Unsubscribing from WebSocket subject on unmount.
       webSocketSubject.unsubscribe();
       webSocketSubjectRef.current = null;
+      setWebSocketState(WebSocketState.Closed);
       // setIsWebSocketConnected(false);
     };
   }, []);
 
   const isDuplicate = watchList.some((item) => item.isin === value);
 
+  const webSocketSubject = webSocketSubjectRef.current;
+
+  const reconnect = () => {
+    if (!webSocketSubject || webSocketSubject.closed) {
+      window.location.reload();
+      return;
+    }
+    setWebSocketState(WebSocketState.Connecting);
+    setTimeout(() => {
+      setWebSocketState(WebSocketState.Open);
+      webSocketSubject.subscribe({
+        next: (event: Stock) => updateWatchList(event),
+        error: () => setWebSocketState(WebSocketState.Closed),
+        complete: () => setWebSocketState(WebSocketState.Closed),
+      });
+
+      //   Resubscribe to all stocks in watch list.
+      watchList.forEach((item) => {
+        // @ts-expect-error Object is possibly 'undefined'.
+        webSocketSubject.next({ subscribe: item.isin });
+      });
+    }, 5000);
+  };
+
+  const isReload = !webSocketSubject || webSocketSubject.closed;
+
   return {
     watchList,
-    isConnected,
+    webSocketState,
     subscribe: (isin: string) =>
       manageSubscription(isin, SubscriptionType.Subscribe),
     unsubscribe: (isin: string) =>
@@ -84,5 +103,7 @@ export const useWebSocket = () => {
     setValue,
     value,
     isDuplicate,
+    reconnect,
+    isReload,
   };
 };
