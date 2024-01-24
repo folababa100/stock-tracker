@@ -64,7 +64,7 @@ const App: React.FC = () => {
           </div>
           {error && <p className="error-text">{error}</p>}
         </form>
-        <Alert show={!isConnected} type="warning">
+        <Alert show={!isConnected} type="warning" dismissible={false}>
           {isConnecting
             ? 'Connecting...'
             : 'You are not connected to the server.'}

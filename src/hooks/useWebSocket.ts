@@ -7,7 +7,6 @@ const WS_ENDPOINT = import.meta.env.VITE_WS_ENDPOINT as string;
 export const useWebSocket = () => {
   const [watchList, setWatchList] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
-  // const [error, setError] = useState('');
   const [webSocketState, setWebSocketState] = useState<WebSocketState>(
     WebSocketState.Open,
   );
@@ -16,6 +15,7 @@ export const useWebSocket = () => {
   // Updates watch list with new stock data or adds new stocks.
   const updateWatchList = (stockData: Stock) => {
     setWatchList((prev) => {
+      // Check if stock already exists in watch list.
       const stockIndex = prev.findIndex((item) => item.isin === stockData.isin);
       if (stockIndex !== -1) {
         // Update price if stock already exists in watch list.
@@ -57,11 +57,9 @@ export const useWebSocket = () => {
     });
 
     return () => {
-      // Unsubscribing from WebSocket subject on unmount.
       webSocketSubject.unsubscribe();
       webSocketSubjectRef.current = null;
       setWebSocketState(WebSocketState.Closed);
-      // setIsWebSocketConnected(false);
     };
   }, []);
 
