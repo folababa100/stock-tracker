@@ -40,7 +40,7 @@ describe('useWebSocket', () => {
     expect(result.current.webSocketState).toBe(WebSocketState.Open);
   });
 
-  it('subscribes to a stock', () => {
+  it('subscribes to a Stocks', () => {
     const { result } = renderHook(() => useWebSocket());
     act(() => {
       result.current.subscribe('testISIN');
@@ -51,7 +51,7 @@ describe('useWebSocket', () => {
     });
   });
 
-  it('unsubscribes from a stock', () => {
+  it('unsubscribes from a Stocks', () => {
     const { result } = renderHook(() => useWebSocket());
     act(() => {
       result.current.unsubscribe('testISIN');

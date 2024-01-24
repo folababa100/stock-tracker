@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'components/Header';
 import TextField from 'components/TextField';
 import Button from 'components/Button';
-import Stocks from 'components/stock/List';
+import Stocks from 'components/Stocks/List';
 import Alert from 'components/Alert';
 
 import { useStock, useTheme } from 'hooks';
@@ -13,6 +13,7 @@ import './styles/utility.scss';
 
 const App: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+
   const {
     value,
     setValue,
@@ -41,7 +42,7 @@ const App: React.FC = () => {
           Enter the ISIN code of the stock you want to track and click
           subscribe.
           <br />
-          Example: US0378331005
+          Example: DE000BASF111
         </p>
         <form onSubmit={onSubscribe} className="mt-4 mb-4 form-card">
           <div className="flex flex-align-end gap-20">
@@ -56,7 +57,7 @@ const App: React.FC = () => {
             <Button
               type="submit"
               title="Subscribe"
-              disabled={!!error || value.length === 0 || !isConnected}
+              disabled={!!error || value.length !== maxLength || !isConnected}
             >
               <FaRegBell size={20} />
               <span className="ml-2 hidden-xs">Subscribe</span>
@@ -77,7 +78,11 @@ const App: React.FC = () => {
             {isReload ? 'Reload' : 'Reconnect'}
           </Button>
         </Alert>
-        <Stocks watchList={watchList} unsubscribe={unsubscribe} />
+        <Stocks
+          watchList={watchList}
+          unsubscribe={unsubscribe}
+          isConnected={isConnected}
+        />
       </main>
     </div>
   );

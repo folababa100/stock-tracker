@@ -9,9 +9,17 @@ interface ItemProps {
   isin: string;
   price: number;
   unsubscribe: () => void;
+  className?: string;
+  isConnected: boolean;
 }
 
-const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
+const Item: React.FC<ItemProps> = ({
+  className,
+  isin,
+  price,
+  unsubscribe,
+  isConnected,
+}) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
@@ -24,7 +32,7 @@ const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
   }, []);
 
   return (
-    <div className="stock__container">
+    <div className={`stock__container ${className}`}>
       <div className="stock__data">
         {isMobile ? (
           <div className="stock__data__item">
@@ -50,6 +58,7 @@ const Item: React.FC<ItemProps> = ({ isin, price, unsubscribe }) => {
         title={`Unsubscribe from ${isin}`}
         aria-label={`Unsubscribe from ${isin}`}
         variant="secondary"
+        disabled={!isConnected}
       >
         <FaRegBellSlash size={20} />
         <span className="ml-2 hidden-xs">Unsubscribe</span>

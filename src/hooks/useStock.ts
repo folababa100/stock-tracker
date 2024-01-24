@@ -3,24 +3,15 @@ import { useWebSocket } from 'hooks/useWebSocket.ts';
 import { FormEvent } from 'react';
 import { WebSocketState } from 'types';
 
-const ISIN_LENGTH = 12;
-const ISIN_REGEX = new RegExp(/[a-zA-Z]{2}[a-zA-Z0-9]{9}\d/);
+const MAX_LENGTH = 12;
+const REGEX = new RegExp(/[a-zA-Z]{2}[a-zA-Z0-9]{9}\d/);
 
 export const useStock = () => {
-  const {
-    watchList,
-    subscribe,
-    unsubscribe,
-    reconnect,
-    setValue,
-    value,
-    isDuplicate,
-    webSocketState,
-    isReload,
-  } = useWebSocket();
+  const { watchList, subscribe, isDuplicate, webSocketState, value, ...rest } =
+    useWebSocket();
 
   // Check for invalid ISIN code with correct length
-  const isInvalid = value.length === ISIN_LENGTH && !ISIN_REGEX.test(value);
+  const isInvalid = value.length === MAX_LENGTH && !REGEX.test(value);
 
   const onSubscribe = (e: FormEvent) => {
     e.preventDefault();
@@ -37,16 +28,13 @@ export const useStock = () => {
       : '';
 
   return {
-    value,
-    setValue,
     watchList,
     onSubscribe,
-    unsubscribe,
-    maxLength: ISIN_LENGTH,
-    reconnect,
+    maxLength: MAX_LENGTH,
     isConnected,
     isConnecting,
     error,
-    isReload,
+    value,
+    ...rest,
   };
 };

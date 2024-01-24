@@ -12,25 +12,25 @@ export const useWebSocket = () => {
   );
   const webSocketSubjectRef = useRef<WebSocketSubject<Stock> | null>(null);
 
-  // Updates watch list with new stock data or adds new stocks.
+  // Updates watch list with new Stocks data or adds new stocks.
   const updateWatchList = (stockData: Stock) => {
     setWatchList((prev) => {
-      // Check if stock already exists in watch list.
+      // Check if Stocks already exists in watch list.
       const stockIndex = prev.findIndex((item) => item.isin === stockData.isin);
       if (stockIndex !== -1) {
-        // Update price if stock already exists in watch list.
+        // Update price if Stocks already exists in watch list.
         const newList = [...prev];
         newList[stockIndex].price = stockData.price;
         return newList;
       } else {
-        // Add new stock to watch list if it doesn't exist.
         setValue('');
-        return [...prev, stockData];
+        // Using a stack approach to display new Stocks at the top of the list.
+        return [stockData, ...prev];
       }
     });
   };
 
-  // Subscribes or unsubscribes from a stock's updates.
+  // Subscribes or unsubscribes from a Stocks's updates.
   const manageSubscription = (
     isin: string,
     mode: string = SubscriptionType.Subscribe,
