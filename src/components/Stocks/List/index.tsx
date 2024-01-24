@@ -12,18 +12,18 @@ interface Subscription {
 }
 
 interface ListProps {
-  watchList: Subscription[];
+  stocks: Subscription[];
   unsubscribe: (isin: string) => void;
   isConnected: boolean;
 }
 
-const List: React.FC<ListProps> = ({ watchList, unsubscribe, isConnected }) => {
-  const watchLength = watchList.length;
+const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
+  const watchLength = stocks.length;
 
   const { items, page, nextPage, prevPage, startItem, endItem } =
     usePagination(watchLength);
 
-  const stocks = watchList.slice(startItem, endItem);
+  const currentStocks = stocks.slice(startItem, endItem);
   return (
     <div>
       {watchLength === 0 && (
@@ -32,7 +32,7 @@ const List: React.FC<ListProps> = ({ watchList, unsubscribe, isConnected }) => {
           <p className="mt-2">You are not tracking any stocks yet.</p>
         </div>
       )}
-      {stocks.map(({ isin, price }) => (
+      {currentStocks.map(({ isin, price }) => (
         <div data-testid="Item">
           <Item
             key={isin}

@@ -5,7 +5,7 @@ import { Stock, SubscriptionType, WebSocketState } from 'types';
 const WS_ENDPOINT = import.meta.env.VITE_WS_ENDPOINT as string;
 
 export const useWebSocket = () => {
-  const [watchList, setWatchList] = useState<Stock[]>([]);
+  const [stocks, setStocks] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
   const [webSocketState, setWebSocketState] = useState<WebSocketState>(
     WebSocketState.Open,
@@ -14,7 +14,7 @@ export const useWebSocket = () => {
 
   // Updates watch list with new Stocks data or adds new stocks.
   const updateWatchList = (stockData: Stock) => {
-    setWatchList((prev) => {
+    setStocks((prev) => {
       // Check if Stocks already exists in watch list.
       const stockIndex = prev.findIndex((item) => item.isin === stockData.isin);
       if (stockIndex !== -1) {
@@ -42,7 +42,7 @@ export const useWebSocket = () => {
     webSocketSubject.next({ [mode]: isin });
 
     if (mode === SubscriptionType.Unsubscribe) {
-      setWatchList((prev) => prev.filter((item) => item.isin !== isin));
+      setStocks((prev) => prev.filter((item) => item.isin !== isin));
     }
   };
 
@@ -63,7 +63,7 @@ export const useWebSocket = () => {
     };
   }, []);
 
-  const isDuplicate = watchList.some((item) => item.isin === value);
+  const isDuplicate = stocks.some((item) => item.isin === value);
 
   const webSocketSubject = webSocketSubjectRef.current;
 
@@ -82,7 +82,7 @@ export const useWebSocket = () => {
       });
 
       //   Resubscribe to all stocks in watch list.
-      watchList.forEach((item) => {
+      stocks.forEach((item) => {
         // @ts-expect-error Object is possibly 'undefined'.
         webSocketSubject.next({ subscribe: item.isin });
       });
@@ -92,7 +92,7 @@ export const useWebSocket = () => {
   const isReload = !webSocketSubject || webSocketSubject.closed;
 
   return {
-    watchList,
+    stocks,
     webSocketState,
     subscribe: (isin: string) =>
       manageSubscription(isin, SubscriptionType.Subscribe),

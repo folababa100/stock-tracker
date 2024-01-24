@@ -7,7 +7,7 @@ const MAX_LENGTH = 12;
 const REGEX = new RegExp(/[a-zA-Z]{2}[a-zA-Z0-9]{9}\d/);
 
 export const useStock = () => {
-  const { watchList, subscribe, isDuplicate, webSocketState, value, ...rest } =
+  const { stocks, subscribe, isDuplicate, webSocketState, value, ...rest } =
     useWebSocket();
 
   // Check for invalid ISIN code with correct length
@@ -22,13 +22,13 @@ export const useStock = () => {
   const isConnecting = webSocketState === WebSocketState.Connecting;
 
   const error = isInvalid
-    ? 'Invalid ISIN code'
+    ? 'Incorrect ISIN code. Please try again.'
     : isDuplicate
-      ? 'Duplicate ISIN code'
+      ? 'Already subscribed, please try another ISIN code.'
       : '';
 
   return {
-    watchList,
+    stocks,
     onSubscribe,
     maxLength: MAX_LENGTH,
     isConnected,

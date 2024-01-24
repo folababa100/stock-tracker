@@ -1,4 +1,4 @@
-import Item from 'components/Stocks/Item';
+import Item from '.';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';

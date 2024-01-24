@@ -1,6 +1,6 @@
-import Pagination from 'components/Pagination';
-import { fireEvent, render, screen } from '@testing-library/react';
+import Pagination from '.';
 
+import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
 describe('Pagination Component', () => {

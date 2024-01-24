@@ -1,5 +1,3 @@
-// Ignore all typescript errors and wa
-
 import { act, renderHook } from '@testing-library/react-hooks';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
@@ -36,7 +34,7 @@ describe('useWebSocket', () => {
 
   it('initializes correctly', () => {
     const { result } = renderHook(() => useWebSocket());
-    expect(result.current.watchList).toEqual([]);
+    expect(result.current.stocks).toEqual([]);
     expect(result.current.webSocketState).toBe(WebSocketState.Open);
   });
 

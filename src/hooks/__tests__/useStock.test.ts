@@ -1,68 +1,56 @@
-// import { act, renderHook } from '@testing-library/react-hooks';
-// import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
-// import { useStock, useWebSocket } from 'hooks';
-//
-// // Mock the useWebSocket hook
-// vi.mock('hooks', () => {
-//   const originalModule = vi.importActual('hooks');
-//   return {
-//     ...originalModule,
-//     useWebSocket: vi.fn(),
-//     useStock: vi.fn(),
-//   };
-// });
-//
-// describe('useStock', () => {
-//   let mockWebSocket: {
-//     subscribe: any;
-//     watchList?: never[];
-//     unsubscribe?: Mock<any, any>;
-//     reconnect?: Mock<any, any>;
-//     setValue?: Mock<any, any>;
-//     value?: string;
-//     isDuplicate?: boolean;
-//     webSocketState?: null;
-//     isReload?: boolean;
-//   };
-//
-//   beforeEach(() => {
-//     // Reset the mock and define default behavior for each test
-//     mockWebSocket = {
-//       watchList: [],
-//       subscribe: vi.fn(),
-//       unsubscribe: vi.fn(),
-//       reconnect: vi.fn(),
-//       setValue: vi.fn(),
-//       value: '',
-//       isDuplicate: false,
-//       webSocketState: null,
-//       isReload: false,
-//     };
-//     useWebSocket.mockReturnValue(mockWebSocket);
-//   });
-//
-//   it('initializes with default states', () => {
-//     // Render the hook
-//     const { result } = renderHook(() => useStock());
-//
-//     // Assert initial state values
-//     expect(result.current.value).toBe('');
-//     expect(result.current.watchList).toEqual([]);
-//     expect(result.current.isConnected).toBe(false);
-//     expect(result.current.isConnecting).toBe(false);
-//     // Add more assertions as needed
-//   });
-//
-//   it('handles subscription correctly', () => {
-//     const { result } = renderHook(() => useStock());
-//     act(() => {
-//       result.current.setValue('validISIN');
-//       result.current.onSubscribe({ preventDefault: vi.fn() });
-//     });
-//
-//     // Assert the subscribe method was called with the correct value
-//     expect(mockWebSocket.subscribe).toHaveBeenCalledWith('validISIN');
-//   });
-//
-//   // Additional tests for other functionalities
-// });
+import { renderHook } from '@testing-library/react-hooks';
+import { useWebSocket } from 'hooks/useWebSocket'; // Adjust the import path as needed
+import { useStock } from 'hooks/useStock'; // Adjust the import path as needed
+import { WebSocketState } from 'types';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
+vi.mock('hooks/useWebSocket', () => {
+  return {
+    useWebSocket: vi.fn(),
+  };
+});
+
+describe('useStock', () => {
+  // Mock the useWebSocket hook
+  beforeEach(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    vi.mocked(useWebSocket).mockReturnValue({
+      stocks: [],
+      subscribe: vi.fn(),
+      isDuplicate: false,
+      webSocketState: WebSocketState.Open,
+      value: '',
+    });
+  });
+
+  // it('validates ISIN code', () => {
+  //   const { result } = renderHook(() => useStock());
+  //   act(() => {
+  //     // Manipulate the value to simulate user input
+  //     result.current.setValue('InvalidISIN');
+  //   });
+  //   expect(result.current.error).toBe('Invalid ISIN code');
+  // });
+  //
+  // it('handles subscription with valid ISIN code', () => {
+  //   const { result } = renderHook(() => useStock());
+  //   act(() => {
+  //     result.current.setValue('ValidISIN123');
+  //     result.current.onSubscribe({ preventDefault: vi.fn() });
+  //   });
+  //   expect(useWebSocket().subscribe).toHaveBeenCalledWith('ValidISIN123');
+  // });
+
+  it('handles connection states', () => {
+    vi.mocked(useWebSocket).mockReturnValueOnce({
+      ...useWebSocket(),
+      webSocketState: WebSocketState.Connecting,
+    });
+    const { result } = renderHook(() => useStock());
+    expect(result.current.isConnected).toBe(false);
+    expect(result.current.isConnecting).toBe(true);
+  });
+
+  // Add more tests as needed...
+});

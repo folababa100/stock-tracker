@@ -17,7 +17,7 @@ const App: React.FC = () => {
   const {
     value,
     setValue,
-    watchList,
+    stocks,
     error,
     onSubscribe,
     unsubscribe,
@@ -65,10 +65,10 @@ const App: React.FC = () => {
           </div>
           {error && <p className="error-text">{error}</p>}
         </form>
-        <Alert show={!isConnected} type="warning" dismissible={false}>
+        <Alert show={!isConnected} dismissible={false}>
           {isConnecting
             ? 'Connecting...'
-            : 'You are not connected to the server.'}
+            : 'Oops! Something went wrong. Please try again.'}
           <Button
             variant="secondary"
             className="btn-sm mt-2"
@@ -79,7 +79,7 @@ const App: React.FC = () => {
           </Button>
         </Alert>
         <Stocks
-          watchList={watchList}
+          stocks={stocks}
           unsubscribe={unsubscribe}
           isConnected={isConnected}
         />

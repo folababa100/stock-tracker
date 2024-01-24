@@ -2,7 +2,6 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { useTheme } from 'hooks';
 
-// Mocking localStorage
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
   return {
@@ -16,7 +15,6 @@ const localStorageMock = (() => {
   };
 })();
 
-// Mocking matchMedia
 const mockMatchMedia = (matches: boolean): void => {
   window.matchMedia = vi.fn().mockImplementation((query: string) => ({
     matches,
@@ -28,7 +26,6 @@ const mockMatchMedia = (matches: boolean): void => {
 
 describe('useTheme', () => {
   beforeEach(() => {
-    // Set up our mocks before each test
     Object.defineProperty(window, 'localStorage', {
       value: localStorageMock,
     });
@@ -39,7 +36,6 @@ describe('useTheme', () => {
   });
 
   afterEach(() => {
-    // Clear mocks after each test
     localStorageMock.clear();
     vi.restoreAllMocks();
   });
@@ -63,10 +59,8 @@ describe('useTheme', () => {
   });
 
   it('updates theme based on system preference', () => {
-    mockMatchMedia(true); // Simulating system preference for dark mode
+    mockMatchMedia(true);
     const { result } = renderHook(() => useTheme());
     expect(result.current.theme).toBe('dark');
   });
-
-  // Additional tests can be added as needed
 });

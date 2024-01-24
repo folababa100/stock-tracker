@@ -1,4 +1,4 @@
-import Alert from 'components/Alert';
+import Alert from '.';
 
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
