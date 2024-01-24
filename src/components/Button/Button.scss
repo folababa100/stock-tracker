@@ -3,7 +3,7 @@
   font-family: inherit;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background-color 0.2s ease;
   border-radius: var(--border-radius-small);
   font-size: var(--font-size-m);
   padding: 10px 12px;
@@ -23,7 +23,7 @@
     background-color: var(--color-blue2);
   }
 
-  &-primary:active {
+  &-primary:active, &-primary:focus {
     background-color: var(--color-blue3);
   }
 
@@ -40,7 +40,7 @@
     background-color: var(--color-black2);
   }
 
-  &-secondary:active {
+  &-secondary:active, &-secondary:focus {
     background-color: var(--color-black3);
   }
 

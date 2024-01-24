@@ -18,14 +18,18 @@
 .button-theme {
   border: none;
   cursor: pointer;
-  outline: none;
   padding: 0;
   border-radius: var(--border-radius-circle);
   width: 40px;
   height: 40px;
   background-color: transparent;
+  transition: background-color 0.2s ease;
 
   &:hover {
-    opacity: 0.7;
+    background-color: var(--color-background3);
+  }
+
+  &:active, &:focus {
+    background-color: var(--color-background4);
   }
 }
