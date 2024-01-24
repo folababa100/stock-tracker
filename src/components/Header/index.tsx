@@ -40,9 +40,17 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
         onClick={() => toggleTheme()}
       >
         {isLight ? (
-          <MdOutlineLightMode size={30} color={color} />
+          <MdOutlineLightMode
+            data-testid="light-icon"
+            size={30}
+            color={color}
+          />
         ) : (
-          <MdOutlineNightlight size={30} color={color} />
+          <MdOutlineNightlight
+            data-testid="dark-icon"
+            size={30}
+            color={color}
+          />
         )}
       </button>
     </header>

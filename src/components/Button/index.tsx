@@ -1,7 +1,7 @@
 import React from 'react';
-import './Button.scss';
+import { ButtonType } from 'types';
 
-type ButtonType = 'primary' | 'secondary' | 'danger';
+import './Button.scss';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonType;

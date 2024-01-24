@@ -17,7 +17,7 @@ const Pagination: React.FC<PaginationProps> = ({
   items,
 }) => {
   return (
-    <div className="pagination">
+    <div className="pagination" data-testid="Pagination">
       <button
         title="Previous page"
         className="pagination-button"

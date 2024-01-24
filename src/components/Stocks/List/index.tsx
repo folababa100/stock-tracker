@@ -28,18 +28,20 @@ const List: React.FC<ListProps> = ({ watchList, unsubscribe, isConnected }) => {
     <div>
       {watchLength === 0 && (
         <div className="text-center">
-          <FaRegSmile size={35} />
+          <FaRegSmile data-testid="FaRegSmile" size={35} />
           <p className="mt-2">You are not tracking any stocks yet.</p>
         </div>
       )}
       {stocks.map(({ isin, price }) => (
-        <Item
-          key={isin}
-          isin={isin}
-          price={price}
-          unsubscribe={() => unsubscribe(isin)}
-          isConnected={isConnected}
-        />
+        <div data-testid="Item">
+          <Item
+            key={isin}
+            isin={isin}
+            price={price}
+            unsubscribe={() => unsubscribe(isin)}
+            isConnected={isConnected}
+          />
+        </div>
       ))}
 
       {watchLength > items && (

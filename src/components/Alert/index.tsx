@@ -1,12 +1,14 @@
 import React from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { AlertType } from 'types';
+
 import './Alert.scss';
 
 interface AlertProps {
   show: boolean;
   dismissible?: boolean;
-  type?: 'warning' | 'danger' | 'success';
+  type?: AlertType;
   children: React.ReactNode;
 }
 

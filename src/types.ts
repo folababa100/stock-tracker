@@ -8,6 +8,9 @@ export enum SubscriptionType {
   Unsubscribe = 'unsubscribe',
 }
 
+export type ButtonType = 'primary' | 'secondary' | 'danger';
+export type AlertType = 'primary' | 'secondary' | 'danger';
+
 export enum WebSocketState {
   Connecting = 0,
   Open = 1,
