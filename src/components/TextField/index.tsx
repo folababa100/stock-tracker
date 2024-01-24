@@ -1,5 +1,5 @@
 import React from 'react';
-import 'components/TextField/TextField.scss';
+import './TextField.scss';
 
 interface TextFieldProps {
   value: string;
@@ -11,16 +11,18 @@ interface TextFieldProps {
 }
 
 const TextField: React.FC<TextFieldProps> = ({
-                                               value,
-                                               label,
-                                               id,
-                                               placeholder,
-                                               maxlength,
-                                               onChange,
-                                             }) => {
+  value,
+  label,
+  id,
+  placeholder,
+  maxlength,
+  onChange,
+}) => {
   return (
     <div className="text-field__container">
-      <label htmlFor={id} className="text-field__label">{label}</label>
+      <label htmlFor={id} className="text-field__label">
+        {label}
+      </label>
       <input
         id={id}
         className="text-field"

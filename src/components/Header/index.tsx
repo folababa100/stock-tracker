@@ -1,6 +1,6 @@
 import React from 'react';
-import {MdOutlineLightMode, MdOutlineNightlight} from "react-icons/md";
-import 'components/Header/Header.scss';
+import { MdOutlineLightMode, MdOutlineNightlight } from 'react-icons/md';
+import './Header.scss';
 
 interface HeaderProps {
   toggleTheme: () => void;
@@ -17,7 +17,12 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   return (
     <header className="header container flex-justify-between flex-center">
       <a aria-label="Home link" href="/public">
-        <svg className="header-logo" viewBox="0 0 74 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="header-logo"
+          viewBox="0 0 74 33"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <title>Trade Republic</title>
           <path
             fillRule="evenodd"
@@ -34,10 +39,11 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
         title="Toggle theme"
         onClick={() => toggleTheme()}
       >
-        {isLight ?
-          <MdOutlineLightMode size={30} color={color}/> :
-          <MdOutlineNightlight size={30} color={color}/>
-        }
+        {isLight ? (
+          <MdOutlineLightMode size={30} color={color} />
+        ) : (
+          <MdOutlineNightlight size={30} color={color} />
+        )}
       </button>
     </header>
   );

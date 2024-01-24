@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
 const WS_ENDPOINT = import.meta.env.VITE_WS_ENDPOINT as string;
@@ -18,13 +18,13 @@ export const useWebSocket = () => {
   const [watchList, setWatchList] = useState<Stock[]>([]);
   const [value, setValue] = useState('');
   // const [error, setError] = useState('');
-  const [isWebSocketConnected, setIsWebSocketConnected] = useState(true);
-  const webSocketSubjectRef = useRef<WebSocketSubject<any> | null>(null);
+  const [isConnected, setIsWebSocketConnected] = useState(true);
+  const webSocketSubjectRef = useRef<WebSocketSubject<Stock> | null>(null);
 
   // Updates watch list with new stock data or adds new stocks.
   const updateWatchList = (stockData: Stock) => {
     setWatchList((prev) => {
-      const stockIndex = prev.findIndex(item => item.isin === stockData.isin);
+      const stockIndex = prev.findIndex((item) => item.isin === stockData.isin);
       if (stockIndex !== -1) {
         // Update price if stock already exists in watch list.
         const newList = [...prev];
@@ -39,20 +39,24 @@ export const useWebSocket = () => {
   };
 
   // Subscribes or unsubscribes from a stock's updates.
-  const manageSubscription = (isin: string, mode: string = SubscriptionType.Subscribe) => {
+  const manageSubscription = (
+    isin: string,
+    mode: string = SubscriptionType.Subscribe,
+  ) => {
     const webSocketSubject = webSocketSubjectRef.current;
     if (!webSocketSubject || webSocketSubject.closed) return;
 
+    // @ts-expect-error Object is possibly 'undefined'.
     webSocketSubject.next({ [mode]: isin });
 
     if (mode === SubscriptionType.Unsubscribe) {
-      setWatchList(prev => prev.filter(item => item.isin !== isin));
+      setWatchList((prev) => prev.filter((item) => item.isin !== isin));
     }
   };
 
   useEffect(() => {
     // Setting up WebSocket subject to handle data, errors, and connection closure.
-    const webSocketSubject: WebSocketSubject<any> = webSocket(WS_ENDPOINT);
+    const webSocketSubject: WebSocketSubject<Stock> = webSocket(WS_ENDPOINT);
     webSocketSubjectRef.current = webSocketSubject;
     webSocketSubject.subscribe({
       next: (event: Stock) => updateWatchList(event),
@@ -72,9 +76,11 @@ export const useWebSocket = () => {
 
   return {
     watchList,
-    isWebSocketConnected,
-    subscribe: (isin: string) => manageSubscription(isin, SubscriptionType.Subscribe),
-    unsubscribe: (isin: string) => manageSubscription(isin, SubscriptionType.Unsubscribe),
+    isConnected,
+    subscribe: (isin: string) =>
+      manageSubscription(isin, SubscriptionType.Subscribe),
+    unsubscribe: (isin: string) =>
+      manageSubscription(isin, SubscriptionType.Unsubscribe),
     setValue,
     value,
     isDuplicate,

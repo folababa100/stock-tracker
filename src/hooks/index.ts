@@ -1,2 +1,2 @@
-export * from './useWebSocket';
-export * from './useTheme.ts';
+export * from './useTheme';
+export * from './useStock';
