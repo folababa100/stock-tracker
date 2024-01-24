@@ -23,7 +23,7 @@
     background-color: var(--color-blue2);
   }
 
-  &-primary:active, &-primary:focus {
+  &-primary:active {
     background-color: var(--color-blue3);
   }
 
@@ -40,7 +40,7 @@
     background-color: var(--color-black2);
   }
 
-  &-secondary:active, &-secondary:focus {
+  &-secondary:active {
     background-color: var(--color-black3);
   }
 
