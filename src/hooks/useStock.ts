@@ -20,13 +20,14 @@ export const useStock = () => {
   const isConnected = webSocketState === WebSocketState.Open;
   const isConnecting = webSocketState === WebSocketState.Connecting;
 
-  const error = isInvalid
-    ? 'Incorrect ISIN code. Please try again.'
-    : isDuplicate
-      ? 'Already subscribed, please try another ISIN code.'
-      : !isConnected
-        ? 'Please reconnect to track your stocks.'
-        : '';
+  let error = '';
+  if (isInvalid) {
+    error = 'Incorrect ISIN code. Please try again.';
+  } else if (isDuplicate) {
+    error = 'Already subscribed, please try another ISIN code.';
+  } else if (!isConnected) {
+    error = 'Please reconnect to track your stocks.';
+  }
 
   return {
     stocks,

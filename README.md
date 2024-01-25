@@ -1,72 +1,22 @@
-# Frontend Coding Challenge
+# My stock tracker.
 
-Hello there, thanks again for your interest in Trade Republic. To kick off the
-interview process we have prepared a short coding exercise for you, to demonstrate your knowledge of the language and tools we use to develop our web applications.
+### Intro & Context
+This is my solution to the coding challenge. This App is a stock tracker that allows the user to subscribe to stocks and
+see their real-time prices. The user can also unsubscribe from stocks and add new stocks to his watch list. The app
+also has a dark mode and a light mode to improve the user experience. The app is responsive and can be used on mobile
+devices as well.
 
-**Please note: The coding test should show that you feel comfortable working with any JavaScript framework. We use Vue.js and prefer it but you can use another framework if you feel that it will better show off your skills. The assessment of your submission will not change if you use a different framework.**
+## Initial Setup
 
-In case you have any questions, feel free to reach out to your dedicated recruiter.
+### Environment setup
 
-## Content
+Please make sure to have [Node](https://nodejs.org/en/download) 18 up installed.
 
-- [Intro & Context](#context)
-- [The Application](#the-application)
-- [Using this application](#using-this-application)
-- [The Challenge](#task-description)
-  - [Task 1](#task-1)
-  - [Task 2](#task-2)
-  - [Task 3](#task-3)
-- [Socket Reference](#socket-reference)
-- [Challenge Questions](#questions)
-- [Submit your solution](#how-to-submit-your-solution)
-
-## Context
-
-Developing our app, we work with a REST API as well as real-time streaming market
-data to display the latest stock prices with millisecond latency. You should feel
-comfortable developing an app to address these two types of network interaction. The WebSocket server you’ll be using accepts and emits messages in JSON format.
-
-## Things we care for:
-
-✅ Unit tests
-
-✅ Semantic HTML
-
-✅ Responsive Design
-
-✅ Documentation
-
-✅ Accessibility
-
-## Nice to have:
-
-🤩 Use of Reactive programming libraries like RxJS.
-
-### Glossary
-
-We don’t expect you to be a trading expert and some of the terms are quite specific to the space. Here’s some of the terms we use in the task:
-| Term | Definition |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `ISIN` | The 12-digit alphanumeric code that uniquely identifies a specific instrument |
-| `instrument` | A tradable asset, or a negotiable item, such as a security, commodity, derivative, or index, or any item that underlies a derivative. |
-| `bid` | The highest price a buyer will pay to buy a specified number of shares of an instrument at any given time. |
-| `ask` | The lowest price at which a seller will sell the instrument. |
-
----
-
-## The Application
-
-In the interest of saving you some time, we provided a working [Vue](https://vuejs.org) application. This application also includes a small set of components for you to use. Please note, using these components is optional, you are welcome to change them in any way you want, you should only submit something you are comfortable with.
-
-## Using this application
-
-### Pre-requisites
-
-Please make sure to have [Node](https://nodejs.org) 16 installed.
 
 ### Running the code
 
-Once you have unzipped the folder and are ready to start, you can run `yarn` (or `npm install`) to install dependencies. After that, you can run:
+Nothing changes, you can run `yarn` or `npm install` to install dependencies.
+After that, you can run:
 
 ```bash
 # npm
@@ -76,125 +26,136 @@ npm run dev
 yarn dev
 ```
 
-This will start the application in development mode. It will also start the WebSocket server on port 8425. 
+This will start the application in development mode. It will also start the WebSocket server on port 8425.
 
-You can see the client application running in your browser by going to http://localhost:3000.
-
----
-
-## Task Description
-
-In this repository we have provided you with a minimal [Vue.js](https://vuejs.org) + [Vite](https://vitejs.dev) application. Your task is to extend this app so that it allows a user to subscribe/unsubscribe to a list of stocks. The user should be able to subscribe to a stock by entering its [ISIN](https://www.investopedia.com/terms/i/isin.asp) number into an input and then see the current price of the stock displayed in a list view.
-
-What we would like to see is clean, readable code that you would be **comfortable submitting to your colleagues for review**. Please explain decisions that you’ve made and what you would do if you had more time to continue development. You can add them to this `README.md` file.
-
-Requirements:
-
-- We want to see how you interpret [user stories](#user-stories) into a solution, please fulfill all of the stories provided.
-- Please avoid using a UI library, we want to be able to see your styling skills.
-- We recommend using Vue but you can use a different framework if you feel that you’ll be able to demonstrate your skills better.
-- Great user experience is important to us at Trade Republic. Please approach the challenge from a user’s perspective and build something you would be happy to put into user’s hands.
-- Please also provide setup instructions and answer the following [questions](#questions) in your README.
-
-## Tasks
-
-### Task 1
-
-Create a form that allows a user to submit an ISIN and add it to a watch list.
-
-#### User Stories
-
-> As a user, I should be able to submit an ISIN and it should be added to my watch list.
-
-> As a user, I should not be able to subscribe to the same ISIN twice so that I don’t get confused by seeing multiple versions of the same stock.
-
-> As a user, I should not be able to subscribe to an empty or invalid ISIN.
-
-> Validation rules: An ISIN is a 12-character alphanumeric code. It consists of three parts: A two letter country code, a nine character alpha-numeric national security identifier, and a single check digit.
-> Example:- US0378331005.
-
-### Task 2
-
-Create the UI and render the watch list created in the previous task to the DOM.
-
-#### User Stories
-
-> As a user, I should be able to view a list of my subscribed stocks displaying the latest stock price received from the WebSocket connection so that I can keep track of multiple stocks at the same time.
-
-> As a user, I should be able to unsubscribe from a stock that’s in my watch list so that I can focus on the stocks I’m interested in.
-
-> As a user, I should be notified if the websocket disconnects and the data is not up to date so that I know that the price is not accurate.
-
-> As a user, I should be able to view their stocks on desktop and mobile screen widths so that I am able to use the app on my mobile browser.
-
-### Task 3
-
-At this point, you can consider the challenge to be complete.
-
-This task is intentionally left open for you to add any feature you want to the application. Anything is valid, from improvements to Accessibility all the way to UI Transitions, CSS, etc.
+You can see the client application running in your browser by going to http://localhost:8080.
 
 ---
 
-## Socket Reference
 
-The WebSocket server is started when you run `yarn dev`. You can then connect to it at
+---
+## Documentation
 
-```URL
-ws://localhost:8425/
-```
 
-To subcribe to a specific security
+### useWebSocket
 
-```JSON
-{
-    "subscribe": "${ISIN}"
-}
-```
+The `useWebSocket` hook returns an object containing the following properties and methods:
 
-To unsubscribe to a specific security
+### Properties
 
-```JSON
-{
-    "unsubscribe": "${ISIN}"
-}
-```
+- `stocks`: An array of `Stock` objects. It represents the current state of stocks being tracked or monitored.
+- `webSocketState`: Represents the current state of the WebSocket connection. It's of the type `WebSocketState`, indicating states like Open, Closed, or Connecting.
+- `value`: A string value, presumably used for tracking input or filter values in the context where the hook is used.
+- `isDuplicate`: A boolean indicating whether a stock (based on the `value` state) already exists in the `stocks` array.
+- `isReload`: A boolean indicating if a reload is required, typically true when the WebSocket is disconnected or closed.
 
-#### Example Request
+### Methods
 
-To subscribe to the BASF instrument you would use
+- `subscribe(isin: string)`: A method to subscribe to a specific stock identified by its ISIN. It internally calls `manageSubscription` with `SubscriptionType.Subscribe`.
+- `unsubscribe(isin: string)`: A method to unsubscribe from a specific stock identified by its ISIN. It internally calls `manageSubscription` with `SubscriptionType.Unsubscribe`.
+- `setValue(value: string)`: A method to set the `value` state, presumably used to track user input or filter criteria.
+- `reconnect()`: A method to attempt reconnection to the WebSocket if it's closed. It also resubscribes to all stocks in the watch list.
 
-```JSON
-{
-    "subscribe": "DE000BASF111"
-}
-```
+### Usage
 
-#### Sample Response
+The returned object from `useWebSocket` provides the necessary interface to interact with a WebSocket for real-time stock data updates. Components using this hook can display stock data, handle user subscriptions to specific stocks, and react to changes in WebSocket connection state.
 
-You would then receive a WebSocket stream with messages in the following format
+### Example
 
-```JSON
-{
-    "isin": "DE000BASF111",
-    "price": 11.316359370403822,
-    "bid": 11.306359370403822,
-    "ask": 11.326359370403821
-}
+```jsx
+const {
+  stocks,
+  webSocketState,
+  subscribe,
+  unsubscribe,
+  setValue,
+  value,
+  isDuplicate,
+  reconnect,
+  isReload,
+} = useWebSocket();
+
+// Example usage in a component
+
 ```
 
 ---
 
-## Questions
+
+---
+
+## Additional features
+
+- Light and dark mode
+- Pagination
+
+---
+
+
+---
+
+## Potential Enhancements
+
+- Improve documentation of the components with Storybook
+- Add end-to-end tests with Cypress to test all the user stories.
+- Add a caching strategy to the app, so that the user can see even when they reload the page.
+- Only subscribe to the stocks that are visible to the user.
+- Add transitions to the app to improve the user experience.
+- Improve test coverage.
+- Improve typescript types.
+
+---
+
+
+---
+
+## Answers to questions
 
 1. What happens in case the WebSocket disconnects? How would you go further to keep
    the live data available or inform the user? Please discuss the challenges.
+   ```text
+   I implemented a reconnection strategy in the app, through a alert message that is displayed to the user when the
+   connection is lost. The user can click on the button in the alert message to reconnect to the WebSocket. When the user
+   clicks on the button, the app tries to reconnect to the WebSocket. If the reconnection is successful, the alert message
+   is hidden and the user can continue using the app and the subscription to the stocks is restored. If the reconnection
+   fails, the alert message is displayed again. The user can click on the button again to try to reconnect to the WebSocket.
+    
+   Another way to handle this case is to automatically try to reconnect to the WebSocket using a exponential backoff
+   strategy. This way the user doesn't have to click on the button to reconnect to the WebSocket. The app will try to
+   reconnect automatically and if the reconnection is successful, the user can continue using the app and the subscription
+   to the stocks is restored.
+   ```
+2. What happens if a user adds an instrument multiple times to their list? Please discuss possible challenges and
+   mitigations.
 
-2. What happens if a user adds an instrument multiple times to their list? Please discuss possible challenges and mitigations.
+    ```text
+    I implemented a check in the app, so that the user can't add the same stock twice. If the user tries to add a stock
+    that is already in his watch list, he will see a notification that he already has this stock in his watch list.
+    Another way to handle this case is to allow the user to add the same stock multiple times, but display a notification
+    that he already has this stock in his watch list and display the number of times he added it. This way the user can
+    see how many times he added the same stock and decide if he wants to keep it or remove it.
+    ```
 
-3. What potential performance issues might you face when this app scales with multiple subscriptions? How would you improve the speed and user experience?
+3. What potential performance issues might you face when this app scales with multiple subscriptions? How would you
+   improve the speed and user experience?
+
+    ```text
+    I implemented a pagination strategy in the app, so that the user can see only the 5 latest stocks at a time. This way
+    we can avoid rendering a lot of data and also avoid unnecessary updates and re-renders. One improvement that I would
+    like to make here is to only subscribe to the stocks that are visible to the user. In my current implementation
+    I subscribe to all of the stocks that the user adds to his watch list, even if they are not visible to him.
+    This can be improved by subscribing to the stocks only when the user navigates to the page with the stock list.
+    ```
 
 ---
 
-## How to submit your solution
 
-Please zip your project and submit zip archive via the Greenhouse link attached to the email with the code challenge. Your dedicated recruiter will receive the notification about your submission and will send it for the team review.
+---
+
+## Development experience improvements
+
+### Linting and formatting
+
+- Added eslint and prettier to the project.
+- Added husky and lint-staged to the project to run eslint and prettier on commit.
+- editorconfig added to the project to keep the same code style across different editors.
