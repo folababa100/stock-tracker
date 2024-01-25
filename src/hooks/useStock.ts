@@ -10,7 +10,6 @@ export const useStock = () => {
   const { stocks, subscribe, isDuplicate, webSocketState, value, ...rest } =
     useWebSocket();
 
-  // Check for invalid ISIN code with correct length
   const isInvalid = value.length === MAX_LENGTH && !REGEX.test(value);
 
   const onSubscribe = (e: FormEvent) => {
@@ -25,7 +24,9 @@ export const useStock = () => {
     ? 'Incorrect ISIN code. Please try again.'
     : isDuplicate
       ? 'Already subscribed, please try another ISIN code.'
-      : '';
+      : !isConnected
+        ? 'Please reconnect to track your stocks.'
+        : '';
 
   return {
     stocks,

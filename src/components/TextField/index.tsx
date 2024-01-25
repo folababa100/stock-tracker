@@ -1,13 +1,12 @@
 import React from 'react';
 import './TextField.scss';
 
-interface TextFieldProps {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   label: string;
   id: string;
   placeholder?: string;
   maxlength?: number;
-  onChange: (value: string) => void;
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -17,20 +16,19 @@ const TextField: React.FC<TextFieldProps> = ({
   placeholder,
   maxlength,
   onChange,
+  ...props
 }) => {
   return (
-    <div className="text-field__container">
-      <label htmlFor={id} className="text-field__label">
-        {label}
-      </label>
+    <div className="form-control">
+      <label htmlFor={id}>{label}</label>
       <input
         id={id}
-        className="text-field"
         value={value}
         placeholder={placeholder}
         maxLength={maxlength}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         required
+        {...props}
       />
     </div>
   );

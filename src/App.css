@@ -22,5 +22,5 @@
   color: var(--color-error);
   margin-bottom: 0;
   margin-top: 0.25rem;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-s);
 }

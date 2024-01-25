@@ -49,10 +49,11 @@ const App: React.FC = () => {
             <TextField
               placeholder="XXXXXXXXXXXX"
               id="isin_text_field"
-              value={value}
-              onChange={setValue}
+              value={!isConnected ? '' : value}
+              onChange={(e) => setValue(e.target.value)}
               maxlength={maxLength}
               label="ISIN code"
+              disabled={!isConnected}
             />
             <Button
               type="submit"
@@ -65,7 +66,7 @@ const App: React.FC = () => {
           </div>
           {error && <p className="error-text">{error}</p>}
         </form>
-        <Alert show={!isConnected} dismissible={false}>
+        <Alert show={!isConnected}>
           {isConnecting
             ? 'Connecting...'
             : 'Oops! Something went wrong. Please try again.'}

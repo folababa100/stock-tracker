@@ -39,6 +39,7 @@
   --color-grey5: rgba(92, 92, 92, 0.3);
   --color-grey6: rgba(92, 92, 92, 0.35);
   --color-grey7: rgba(92, 92, 92, 0.4);
+  --color-grey8: rgba(81, 80, 80, 1);
 
 
   --color-primary-blue1: rgba(27, 164, 255, 0.5);
@@ -130,6 +131,7 @@ body.light {
   --color-grey5: rgba(255, 255, 255, 0.3);
   --color-grey6: rgba(255, 255, 255, 0.35);
   --color-grey7: rgba(255, 255, 255, 0.4);
+  --color-grey8: rgba(204, 204, 204, 1);
 
   --color-input-background: rgba(255, 255, 255, 0.9);
   --color-error: rgba(255, 150, 150, 1);

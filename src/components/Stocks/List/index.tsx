@@ -32,9 +32,10 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
           <p className="mt-2">You are not tracking any stocks yet.</p>
         </div>
       )}
-      {currentStocks.map(({ isin, price }) => (
+      {currentStocks.map(({ isin, price }, index) => (
         <div data-testid="Item">
           <Item
+            currentIndex={(page - 1) * items + index + 1}
             key={isin}
             isin={isin}
             price={price}

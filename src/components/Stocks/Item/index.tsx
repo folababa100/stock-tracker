@@ -9,36 +9,25 @@ import './Item.scss';
 interface ItemProps {
   isin: string;
   price: number;
+  currentIndex: number;
   unsubscribe: () => void;
-  className?: string;
   isConnected: boolean;
 }
 
 const Item: React.FC<ItemProps> = ({
-  className,
   isin,
   price,
   unsubscribe,
   isConnected,
+  currentIndex,
 }) => {
   return (
-    <div className={`stock__container ${className}`}>
-      <div className="stock__data">
-        {/*<div className="stock__data__item">*/}
-        {/*  <div className="stock__isin">{isin}</div>*/}
-        {/*  {price}*/}
-        {/*</div>*/}
-        <div>
-          <div className="stock__data__item">
-            <div className="stock__isin">ISIN</div>
-            {isin}
-          </div>
-          <div className="stock__delimiter"></div>
-          <div>
-            <div className="stock__isin">Price</div>
-            {price}
-          </div>
-        </div>
+    <div className="StockItem">
+      <div className="StockItem-data">
+        <span className="StockItem-isin">
+          {currentIndex}: {isin}
+        </span>
+        <span className="StockItem-price">{price}</span>
       </div>
       <Button
         onClick={unsubscribe}
