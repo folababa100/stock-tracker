@@ -23,7 +23,7 @@ const Alert: React.FC<AlertProps> = ({
       <div className="alert-container">
         {isConnecting
           ? 'Connecting...'
-          : 'Oops! Something went wrong. Please try again.'}
+          : 'Oops! Something went wrong. Please connect again.'}
         <Button
           variant="secondary"
           className="btn-sm mt-2"

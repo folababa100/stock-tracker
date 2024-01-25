@@ -47,6 +47,16 @@
   &-sm {
     padding: 8px 12px;
     font-size: var(--font-size-s);
+    color: var(--color-white-all);
+    background-color: var(--color-black-all);
+  }
+
+  &-sm:hover {
+    background-color: var(--color-black2-all);
+  }
+
+  &-sm:active {
+    background-color: var(--color-black3-all);
   }
 
   &:disabled {
@@ -62,7 +72,6 @@
     border-radius: var(--border-radius-circle);
   }
 
-  // Mobile first approach
   @media (min-width: 576px) {
     padding-left: 16px;
     padding-right: 16px;

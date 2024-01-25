@@ -26,9 +26,7 @@ npm run dev
 yarn dev
 ```
 
-This will start the application in development mode. It will also start the WebSocket server on port 8425.
-
-You can see the client application running in your browser by going to http://localhost:8080.
+After running the above command, you can see the client application running in your browser by going to http://localhost:8080.
 
 ---
 

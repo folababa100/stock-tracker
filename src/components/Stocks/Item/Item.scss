@@ -10,19 +10,30 @@
   &-data {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: end;
     align-items: flex-start;
   }
 
   &-isin {
-    font-size: var(--font-size-s);
+    font-size: var(--font-size-xs);
     font-weight: 600;
     margin-bottom: 0.25rem;
     color: var(--color-grey8);
   }
 
   &-price {
-    font-size: 1.25rem;
+    font-size: var(--font-size-l);
     font-weight: 600;
   }
+
+  @media (min-width: 576px) {
+    &-isin {
+      font-size: var(--font-size-s);
+    }
+
+    &-price {
+      font-size: var(--font-size-xl);
+    }
+  }
 }
+
