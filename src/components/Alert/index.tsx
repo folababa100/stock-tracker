@@ -1,8 +1,9 @@
 import React from 'react';
+import Button from 'components/Button';
+
 import { AlertType } from 'types';
 
 import './Alert.scss';
-import Button from 'components/Button';
 
 interface AlertProps {
   show: boolean;

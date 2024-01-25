@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { MdOutlineLightMode, MdOutlineNightlight } from 'react-icons/md';
+
 import './Header.scss';
 
 interface HeaderProps {

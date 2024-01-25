@@ -10,7 +10,7 @@ import './Form.scss';
 interface FormProps {
   value: string;
   setValue: (value: string) => void;
-  onSubscribe: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   error: string;
   maxLength: number;
   isConnected: boolean;
@@ -19,21 +19,25 @@ interface FormProps {
 const Form = ({
   value,
   setValue,
-  onSubscribe,
+  onSubmit,
   error,
   maxLength,
   isConnected,
 }: FormProps) => {
   return (
-    <form role="form" onSubmit={onSubscribe} className="mt-4 mb-4 form-card">
+    <form
+      onSubmit={onSubmit}
+      className="mt-4 mb-4 form-card"
+      data-testid="form"
+    >
       <div className="flex flex-align-end gap-20">
         <TextField
-          placeholder="XXXXXXXXXXXX"
+          placeholder="Enter ISIN"
           id="isin_text_field"
           value={!isConnected ? '' : value}
           onChange={(e) => setValue(e.target.value)}
           maxlength={maxLength}
-          label="ISIN code"
+          label="ISIN"
           disabled={!isConnected}
         />
         <Button

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ButtonType } from 'types';
 
 import './Button.scss';

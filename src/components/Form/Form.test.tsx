@@ -9,7 +9,7 @@ describe('Form Component', () => {
   const props = {
     value: '',
     setValue: mockSetValue,
-    onSubscribe: mockOnSubscribe,
+    onSubmit: mockOnSubscribe,
     error: '',
     maxLength: 12,
     isConnected: true,
@@ -17,7 +17,7 @@ describe('Form Component', () => {
 
   it('renders correctly with props', () => {
     render(<Form {...props} />);
-    expect(screen.getByPlaceholderText('XXXXXXXXXXXX')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter ISIN code')).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /subscribe/i }),
     ).toBeInTheDocument();
@@ -36,14 +36,14 @@ describe('Form Component', () => {
 
   it('updates value on TextField change', () => {
     render(<Form {...props} />);
-    const input = screen.getByPlaceholderText('XXXXXXXXXXXX');
+    const input = screen.getByPlaceholderText('Enter ISIN code');
     fireEvent.change(input, { target: { value: 'New Value' } });
     expect(mockSetValue).toHaveBeenCalledWith('New Value');
   });
 
-  it('calls onSubscribe on form submission', () => {
+  it('calls onSubmit on form submission', () => {
     render(<Form {...props} value="DE000BASF111" />);
-    const form = screen.getByRole('form');
+    const form = screen.getByTestId('form');
     fireEvent.submit(form);
     expect(mockOnSubscribe).toHaveBeenCalled();
   });

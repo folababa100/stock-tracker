@@ -2,12 +2,12 @@ import React from 'react';
 import Header from 'components/Header';
 import Stocks from 'components/Stocks/List';
 import Alert from 'components/Alert';
+import Form from 'components/Form';
 
 import { useStock, useTheme } from 'hooks';
 
 import './App.css';
 import './styles/utility.scss';
-import Form from 'components/Form';
 
 const App: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -43,7 +43,7 @@ const App: React.FC = () => {
         <Form
           value={value}
           setValue={setValue}
-          onSubscribe={onSubscribe}
+          onSubmit={onSubscribe}
           error={error}
           maxLength={maxLength}
           isConnected={isConnected}

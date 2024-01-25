@@ -12,7 +12,6 @@ export const useWebSocket = () => {
   );
   const webSocketSubjectRef = useRef<WebSocketSubject<Stock> | null>(null);
 
-  // Updates watch list with new Stocks data or adds new stocks.
   const updateWatchList = (stockData: Stock) => {
     setStocks((prev) => {
       // Check if Stocks already exists in watch list.
@@ -30,7 +29,6 @@ export const useWebSocket = () => {
     });
   };
 
-  // Subscribes or unsubscribes from a Stocks's updates.
   const manageSubscription = (
     isin: string,
     mode: string = SubscriptionType.Subscribe,
@@ -47,7 +45,6 @@ export const useWebSocket = () => {
   };
 
   useEffect(() => {
-    // Setting up WebSocket subject to handle data, errors, and connection closure.
     const webSocketSubject: WebSocketSubject<Stock> = webSocket(WS_ENDPOINT);
     webSocketSubjectRef.current = webSocketSubject;
     webSocketSubject.subscribe({

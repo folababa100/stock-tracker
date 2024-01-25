@@ -4,7 +4,6 @@ import Item from '../Item';
 
 import { FaRegSmile } from 'react-icons/fa';
 import { usePagination } from 'hooks';
-import './List.scss';
 
 interface Subscription {
   isin: string;

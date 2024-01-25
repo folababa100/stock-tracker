@@ -1,4 +1,4 @@
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import { beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { useWebSocket } from 'hooks';
@@ -18,10 +18,6 @@ const createMockWebSocketSubject = (): MockWebSocketSubject => ({
   subscribe: vi.fn(() => ({ unsubscribe: vi.fn() })),
   unsubscribe: vi.fn(),
   closed: false,
-  asObservable: vi.fn(),
-  lift: vi.fn(),
-  error: vi.fn(),
-  complete: vi.fn(),
 });
 
 describe('useWebSocket', () => {
@@ -41,22 +37,22 @@ describe('useWebSocket', () => {
   it('subscribes to a Stocks', () => {
     const { result } = renderHook(() => useWebSocket());
     act(() => {
-      result.current.subscribe('testISIN');
+      result.current.subscribe('DE000BASF111');
     });
 
     expect(mockWebSocketSubject.next).toHaveBeenCalledWith({
-      subscribe: 'testISIN',
+      subscribe: 'DE000BASF111',
     });
   });
 
   it('unsubscribes from a Stocks', () => {
     const { result } = renderHook(() => useWebSocket());
     act(() => {
-      result.current.unsubscribe('testISIN');
+      result.current.unsubscribe('DE000BASF111');
     });
 
     expect(mockWebSocketSubject.next).toHaveBeenCalledWith({
-      unsubscribe: 'testISIN',
+      unsubscribe: 'DE000BASF111',
     });
   });
 
