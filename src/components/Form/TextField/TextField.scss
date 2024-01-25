@@ -1,7 +1,7 @@
 .form-control {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 55px);
 
   label {
     font-size: var(--font-size-s);

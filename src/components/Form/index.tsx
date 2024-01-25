@@ -30,7 +30,7 @@ const Form = ({
       className="mt-4 mb-4 form-card"
       data-testid="form"
     >
-      <div className="flex flex-align-end gap-20">
+      <div className="flex flex-align-end gap-10">
         <TextField
           placeholder="Enter ISIN"
           id="isin_text_field"
