@@ -33,7 +33,7 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
         </div>
       )}
       {currentStocks.map(({ isin, price }, index) => (
-        <div data-testid="Item">
+        <div data-testid="Item" key={isin}>
           <Item
             currentIndex={(page - 1) * items + index + 1}
             key={isin}

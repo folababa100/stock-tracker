@@ -10,18 +10,15 @@ describe('Item Component', () => {
     price: 100,
     unsubscribe: mockUnsubscribe,
     isConnected: true,
+    currentIndex: 1,
   };
 
-  // it('renders correctly with props', () => {
-  //   render(<Item {...props} />);
-  //   expect(screen.getByText(props.isin)).toBeInTheDocument();
-  // expect(screen.getByText(props.price)).toBeInTheDocument();
-  // });
-
-  it('displays the ISIN and price', () => {
+  it('renders correctly with props', () => {
     render(<Item {...props} />);
-    expect(screen.getByText('ISIN')).toBeInTheDocument();
-    expect(screen.getByText('Price')).toBeInTheDocument();
+    expect(
+      screen.getByText(`${props.currentIndex}: ${props.isin}`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(props.price)).toBeInTheDocument();
   });
 
   it('renders unsubscribe button correctly', () => {
@@ -49,15 +46,4 @@ describe('Item Component', () => {
     fireEvent.click(unsubscribeButton);
     expect(mockUnsubscribe).toHaveBeenCalled();
   });
-
-  // it('applies custom class name', () => {
-  //   const customClass = 'custom-class';
-  //   render(<Item {...props} className={customClass} />);
-  //   expect(screen.getByText(props.isin).closest('div')).toHaveClass(
-  //     'stock__container',
-  //   );
-  //   expect(screen.getByText(props.isin).closest('div')).toHaveClass(
-  //     customClass,
-  //   );
-  // });
 });

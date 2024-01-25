@@ -1,63 +1,43 @@
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { describe, expect, it, vi } from 'vitest';
 import Alert from '.';
 
-import { render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import { AlertType } from 'types';
-
 describe('Alert Component', () => {
-  it('renders correctly when shown', () => {
-    render(<Alert show={true}>Test Alert</Alert>);
-    expect(screen.getByText('Test Alert')).toBeInTheDocument();
+  const mockOnClick = vi.fn();
+
+  it('renders when show is true', () => {
+    render(<Alert show={true} onClick={mockOnClick} isConnecting={false} />);
+    expect(
+      screen.getByText(/Oops! Something went wrong./i),
+    ).toBeInTheDocument();
   });
 
   it('does not render when show is false', () => {
-    render(<Alert show={false}>Test Alert</Alert>);
-    expect(screen.queryByText('Test Alert')).not.toBeInTheDocument();
+    render(<Alert show={false} onClick={mockOnClick} isConnecting={false} />);
+    expect(screen.queryByText(/Oops! Something went wrong./i)).toBeNull();
   });
 
-  it.each(['success', 'warning', 'error', 'info'])(
-    'applies the correct class for %s type',
-    (type) => {
-      render(
-        <Alert show={true} type={type as AlertType}>
-          Test Alert
-        </Alert>,
-      );
-      expect(screen.getByText('Test Alert').parentNode).toHaveClass(
-        `alert-${type}`,
-      );
-    },
-  );
-
-  it('displays dismiss button when dismissible', () => {
-    render(
-      <Alert show={true} dismissible={true}>
-        Test Alert
-      </Alert>,
+  it('displays the correct message based on isConnecting prop', () => {
+    const { rerender } = render(
+      <Alert show={true} onClick={mockOnClick} isConnecting={true} />,
     );
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByText(/Connecting.../i)).toBeInTheDocument();
+
+    rerender(<Alert show={true} onClick={mockOnClick} isConnecting={false} />);
+    expect(
+      screen.getByText(/Oops! Something went wrong./i),
+    ).toBeInTheDocument();
   });
 
-  it('does not display dismiss button when not dismissible', () => {
-    render(
-      <Alert show={true} dismissible={false}>
-        Test Alert
-      </Alert>,
-    );
-    expect(screen.queryByRole('button')).toBeNull();
+  it('button is disabled when isConnecting is true', () => {
+    render(<Alert show={true} onClick={mockOnClick} isConnecting={true} />);
+    expect(screen.getByRole('button', { name: /reconnect/i })).toBeDisabled();
   });
 
-  // Test for additional props
-  it('passes additional props to the alert component', () => {
-    const customProp = 'customValue';
-    render(
-      <Alert show={true} data-custom={customProp}>
-        Test Alert
-      </Alert>,
-    );
-    expect(screen.getByText('Test Alert').parentNode).toHaveAttribute(
-      'data-custom',
-      customProp,
-    );
+  it('calls onClick when the button is clicked', () => {
+    render(<Alert show={true} onClick={mockOnClick} isConnecting={false} />);
+    fireEvent.click(screen.getByRole('button', { name: /reconnect/i }));
+    expect(mockOnClick).toHaveBeenCalled();
   });
 });

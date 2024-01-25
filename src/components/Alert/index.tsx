@@ -1,33 +1,39 @@
 import React from 'react';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { AlertType } from 'types';
 
 import './Alert.scss';
+import Button from 'components/Button';
 
 interface AlertProps {
   show: boolean;
-  dismissible?: boolean;
+  onClick: () => void;
   type?: AlertType;
-  children: React.ReactNode;
+  isConnecting: boolean;
 }
 
 const Alert: React.FC<AlertProps> = ({
-  children,
   show,
   type = 'warning',
-  ...props
+  isConnecting,
+  onClick,
 }) => {
-  return (
-    <TransitionGroup>
-      {show && (
-        <CSSTransition timeout={500} classNames="alert">
-          <div className={`alert alert-${type}`} {...props}>
-            <div className="alert-container">{children}</div>
-          </div>
-        </CSSTransition>
-      )}
-    </TransitionGroup>
-  );
+  return show ? (
+    <div className={`alert alert-${type}`}>
+      <div className="alert-container">
+        {isConnecting
+          ? 'Connecting...'
+          : 'Oops! Something went wrong. Please try again.'}
+        <Button
+          variant="secondary"
+          className="btn-sm mt-2"
+          onClick={onClick}
+          disabled={isConnecting}
+        >
+          Reconnect
+        </Button>
+      </div>
+    </div>
+  ) : null;
 };
 
 export default Alert;
