@@ -17,7 +17,7 @@ describe('Form Component', () => {
 
   it('renders correctly with props', () => {
     render(<Form {...props} />);
-    expect(screen.getByPlaceholderText('Enter ISIN code')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Enter ISIN')).toBeInTheDocument();
     expect(
       screen.getByRole('button', { name: /subscribe/i }),
     ).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe('Form Component', () => {
 
   it('updates value on TextField change', () => {
     render(<Form {...props} />);
-    const input = screen.getByPlaceholderText('Enter ISIN code');
+    const input = screen.getByPlaceholderText('Enter ISIN');
     fireEvent.change(input, { target: { value: 'New Value' } });
     expect(mockSetValue).toHaveBeenCalledWith('New Value');
   });
