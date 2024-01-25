@@ -98,7 +98,7 @@ const {
 - Add end-to-end tests with Cypress to test all the user stories.
 - Add a caching strategy to the app, so that the user can see even when they reload the page.
 - Only subscribe to the stocks that are visible to the user.
-- Add transitions to the app to improve the user experience.
+- Add transitions when the user adds or removes a stock.
 - Improve test coverage.
 - Improve typescript types.
 
