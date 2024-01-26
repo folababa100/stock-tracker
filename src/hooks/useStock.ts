@@ -14,7 +14,9 @@ export const useStock = () => {
 
   const onSubscribe = (e: FormEvent) => {
     e.preventDefault();
-    if (isInvalid) return;
+    if (isInvalid || isDuplicate || value.length !== MAX_LENGTH) {
+      return;
+    }
     subscribe(value);
   };
 
