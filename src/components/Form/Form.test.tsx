@@ -1,7 +1,7 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
-import { describe, expect, it, vi } from 'vitest';
 import Form from '.';
+
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 describe('Form Component', () => {
   const mockSetValue = vi.fn();
