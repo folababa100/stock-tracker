@@ -6,7 +6,7 @@ interface PaginationProps {
   prevPage: () => void;
   page: number;
   nextPage: () => void;
-  watchLength: number;
+  stocksLength: number;
   items: number;
 }
 
@@ -14,7 +14,7 @@ const Pagination: React.FC<PaginationProps> = ({
   prevPage,
   page,
   nextPage,
-  watchLength,
+  stocksLength,
   items,
 }) => {
   return (
@@ -32,7 +32,7 @@ const Pagination: React.FC<PaginationProps> = ({
         title="Next page"
         className="pagination-button"
         onClick={nextPage}
-        disabled={page === Math.ceil(watchLength / items)}
+        disabled={page === Math.ceil(stocksLength / items)}
       >
         Next
       </button>

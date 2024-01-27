@@ -13,7 +13,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={3}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -26,7 +26,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={1}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -40,7 +40,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={1}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -53,7 +53,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={2}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -66,7 +66,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={10}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -79,7 +79,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={9}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -92,7 +92,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={2}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );
@@ -106,7 +106,7 @@ describe('Pagination Component', () => {
         prevPage={mockPrevPage}
         page={1}
         nextPage={mockNextPage}
-        watchLength={100}
+        stocksLength={100}
         items={10}
       />,
     );

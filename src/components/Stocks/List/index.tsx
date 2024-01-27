@@ -17,15 +17,15 @@ interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
-  const watchLength = stocks.length;
+  const stocksLength = stocks.length;
 
   const { items, page, nextPage, prevPage, startItem, endItem } =
-    usePagination(watchLength);
+    usePagination(stocksLength);
 
   const currentStocks = stocks.slice(startItem, endItem);
   return (
     <div>
-      {watchLength === 0 && (
+      {stocksLength === 0 && (
         <div className="text-center">
           <FaRegSmile data-testid="FaRegSmile" size={35} />
           <p className="mt-2">You are not tracking any stocks yet.</p>
@@ -44,12 +44,12 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
         </div>
       ))}
 
-      {watchLength > items && (
+      {stocksLength > items && (
         <Pagination
           prevPage={prevPage}
           page={page}
           nextPage={nextPage}
-          watchLength={watchLength}
+          stocksLength={stocksLength}
           items={items}
         />
       )}
