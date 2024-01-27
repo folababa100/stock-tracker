@@ -55,6 +55,4 @@ describe('useWebSocket', () => {
       unsubscribe: 'DE000BASF111',
     });
   });
-
-  // Additional tests can be added as needed
 });
