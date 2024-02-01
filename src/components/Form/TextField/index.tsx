@@ -5,7 +5,6 @@ interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   value: string;
   label: string;
   id: string;
-  placeholder?: string;
   maxlength?: number;
 }
 
@@ -13,7 +12,6 @@ const TextField: React.FC<TextFieldProps> = ({
   value,
   label,
   id,
-  placeholder,
   maxlength,
   onChange,
   ...props
@@ -23,8 +21,8 @@ const TextField: React.FC<TextFieldProps> = ({
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
+        name={id}
         value={value}
-        placeholder={placeholder}
         maxLength={maxlength}
         onChange={onChange}
         required

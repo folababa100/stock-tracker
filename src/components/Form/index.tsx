@@ -33,7 +33,7 @@ const Form = ({
       <div className="flex flex-align-end gap-10">
         <TextField
           placeholder="Enter ISIN"
-          id="isin_text_field"
+          id="isin"
           value={!isConnected ? '' : value}
           onChange={(e) => setValue(e.target.value)}
           maxlength={maxLength}
