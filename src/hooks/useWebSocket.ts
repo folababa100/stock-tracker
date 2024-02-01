@@ -60,7 +60,9 @@ export const useWebSocket = () => {
     };
   }, []);
 
-  const isDuplicate = stocks.some((item) => item.isin === value);
+  const isDuplicate = stocks.some(
+    (item) => item.isin.toLowerCase() === value.toLowerCase(),
+  );
 
   const webSocketSubject = webSocketSubjectRef.current;
 
