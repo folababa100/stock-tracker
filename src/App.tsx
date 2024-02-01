@@ -6,6 +6,7 @@ import Form from 'components/Form';
 
 import { useStock, useTheme } from 'hooks';
 
+import './styles/normalize.css';
 import './App.css';
 import './styles/utility.scss';
 
