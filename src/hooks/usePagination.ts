@@ -1,12 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 const ITEMS_PER_PAGE = 5;
 export const usePagination = (totalItems: number) => {
   const [page, setPage] = useState(1);
 
-  const totalPages = useMemo(() => {
-    return Math.ceil(totalItems / ITEMS_PER_PAGE);
-  }, [totalItems]);
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   const setCurrentPage = useCallback(
     (page: number) => {

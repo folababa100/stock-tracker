@@ -27,7 +27,14 @@ const Item: React.FC<ItemProps> = ({
         <span className="StockItem-isin">
           {currentIndex}: {isin}
         </span>
-        <span className="StockItem-price">{price}</span>
+        <span className="StockItem-price">
+          {new Intl.NumberFormat('en-IE', {
+            style: 'currency',
+            currency: 'EUR',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          }).format(price)}
+        </span>
       </div>
       <Button
         onClick={unsubscribe}
