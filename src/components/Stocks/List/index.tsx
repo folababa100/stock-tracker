@@ -1,7 +1,7 @@
 import React from 'react';
 import Pagination from 'components/Pagination';
 import Item from '../Item';
-
+import { AnimatePresence, motion } from 'framer-motion';
 import { FaRegSmile } from 'react-icons/fa';
 import { usePagination } from 'hooks';
 
@@ -23,6 +23,7 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
     usePagination(stocksLength);
 
   const currentStocks = stocks.slice(startItem, endItem);
+
   return (
     <div>
       {stocksLength === 0 && (
@@ -31,18 +32,27 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
           <p className="mt-2">You are not tracking any stocks yet.</p>
         </div>
       )}
-      {currentStocks.map(({ isin, price }, index) => (
-        <div data-testid="Item" key={isin}>
-          <Item
-            currentIndex={(page - 1) * items + index + 1}
+      <AnimatePresence mode="popLayout">
+        {currentStocks.map(({ isin, price }, index) => (
+          <motion.div
+            data-testid="Item"
             key={isin}
-            isin={isin}
-            price={price}
-            unsubscribe={() => unsubscribe(isin)}
-            isConnected={isConnected}
-          />
-        </div>
-      ))}
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            // exit={{ scale: 0.8, opacity: 0 }}
+            // transition={{ type: 'spring' }}
+          >
+            <Item
+              currentIndex={(page - 1) * items + index + 1}
+              isin={isin}
+              price={price}
+              unsubscribe={() => unsubscribe(isin)}
+              isConnected={isConnected}
+            />
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
       {stocksLength > items && (
         <Pagination
