@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "concurrently \"node server.mjs\" \"vite preview\"",
     "test": "vitest",
+    "test:ci": "vitest run",
     "coverage": "vitest --coverage",
     "format": "prettier --write",
     "prepare": "husky install"
@@ -19,6 +20,7 @@
     "react-icons": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^10.0.1",
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.2",
@@ -29,6 +31,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^1.2.1",
     "concurrently": "^8.2.2",
+    "cypress": "^13.6.6",
     "eslint": "^8.55.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
