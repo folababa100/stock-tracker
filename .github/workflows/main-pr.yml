@@ -1,0 +1,44 @@
+name: Merge upstream branches
+on:
+  push:
+    branches:
+      - feature/*
+jobs:
+  create-pull-request-for-develop:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: 'main'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_body: 'Syncing Develop'
+          pr_title: 'Pulling ${{ github.ref }} into develop'
+          source_branch: ${{ github.ref }}
+  running-tests:
+    needs: create-pull-request-for-develop
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Set up node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: use cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            node_modules
+            */*/node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test:ci
