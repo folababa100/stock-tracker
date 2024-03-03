@@ -25,6 +25,7 @@ const BaseButton: React.FC<BaseButtonProps> = ({
       <motion.div
         animate={isHovered ? animateOnHover : {}}
         transition={{ type: 'spring', stiffness: 300 }}
+        className="flex"
       >
         {icon}
       </motion.div>
