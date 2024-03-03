@@ -40,8 +40,6 @@ const List: React.FC<ListProps> = ({ stocks, unsubscribe, isConnected }) => {
             layout
             initial={{ opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            // exit={{ scale: 0.8, opacity: 0 }}
-            // transition={{ type: 'spring' }}
           >
             <Item
               currentIndex={(page - 1) * items + index + 1}

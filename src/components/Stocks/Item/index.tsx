@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'components/Button';
+import Button from 'components/Buttons';
 
 import { FaRegBellSlash } from 'react-icons/fa';
 
@@ -41,9 +41,9 @@ const Item: React.FC<ItemProps> = ({
         title={`Unsubscribe from ${isin}`}
         aria-label={`Unsubscribe from ${isin}`}
         variant="secondary"
+        icon={<FaRegBellSlash size={20} />}
         disabled={!isConnected}
       >
-        <FaRegBellSlash size={20} />
         <span className="ml-2 hidden-xs">Unsubscribe</span>
       </Button>
     </div>

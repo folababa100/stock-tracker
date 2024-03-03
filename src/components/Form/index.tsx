@@ -1,8 +1,6 @@
 import React from 'react';
-import Button from 'components/Button';
-
+import Button from 'components/Buttons';
 import TextField from './TextField';
-
 import { FaRegBell } from 'react-icons/fa';
 
 import './Form.scss';
@@ -43,9 +41,9 @@ const Form = ({
         <Button
           type="submit"
           title="Subscribe"
+          icon={<FaRegBell size={20} />}
           disabled={!!error || value.length !== maxLength || !isConnected}
         >
-          <FaRegBell size={20} />
           <span className="ml-2 hidden-xs">Subscribe</span>
         </Button>
       </div>

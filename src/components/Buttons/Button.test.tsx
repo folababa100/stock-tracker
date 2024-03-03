@@ -5,7 +5,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { ButtonType } from 'types';
 
-describe('Button Component', () => {
+describe('Buttons Component', () => {
   it('renders correctly', () => {
     render(<Button>Click me</Button>);
     expect(
