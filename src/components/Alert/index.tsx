@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'components/Buttons';
+import Button from 'components/Buttons/Button';
 
 import { AlertType } from 'types';
 

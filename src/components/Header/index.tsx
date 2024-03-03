@@ -1,8 +1,5 @@
-import React, { useState } from 'react';
-
-import { motion } from 'framer-motion';
-
-import { MdOutlineLightMode, MdOutlineNightlight } from 'react-icons/md';
+import React from 'react';
+import ToggleButton from 'components/Buttons/ToggleButton';
 
 import './Header.scss';
 
@@ -11,54 +8,8 @@ interface HeaderProps {
   theme: string;
 }
 
-interface ToggleButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  isLight: boolean;
-  color: string;
-}
-
 const LIGHT_COLOR = '#fff';
 const DARK_COLOR = '#212121';
-
-const ToggleButton: React.FC<ToggleButtonProps> = ({
-  isLight,
-  color,
-  ...props
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <button
-      type="button"
-      className="button-theme flex flex-center"
-      aria-label="Toggle theme"
-      title="Toggle theme"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      {...props}
-    >
-      <motion.div
-        className="flex"
-        animate={{ rotate: isHovered ? 180 : 0 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-      >
-        {isLight ? (
-          <MdOutlineLightMode
-            data-testid="light-icon"
-            size={30}
-            color={color}
-          />
-        ) : (
-          <MdOutlineNightlight
-            data-testid="dark-icon"
-            size={30}
-            color={color}
-          />
-        )}
-      </motion.div>
-    </button>
-  );
-};
 
 const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const isLight = theme === 'light';

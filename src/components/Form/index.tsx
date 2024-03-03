@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from 'components/Buttons';
+import Button from 'components/Buttons/Button';
 import TextField from './TextField';
 import { FaRegBell } from 'react-icons/fa';
 

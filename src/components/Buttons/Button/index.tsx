@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
+import React from 'react';
 import { ButtonType } from 'types';
+import BaseButton from '../BaseButton';
 
 import './Button.scss';
 
@@ -19,26 +18,15 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
-    <button
+    <BaseButton
       className={`btn btn-${variant} ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      animateOnHover={{ rotate: 10 }}
+      icon={icon}
       {...props}
     >
-      {icon && (
-        <motion.div
-          className="flex"
-          animate={{ rotate: isHovered ? 10 : 0 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-        >
-          {icon}
-        </motion.div>
-      )}
       {children}
-    </button>
+    </BaseButton>
   );
 };
 

@@ -1,9 +1,9 @@
-import Button from '.';
+import Button from 'components/Buttons/Button/index.tsx';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 
-import { ButtonType } from 'types';
+import { ButtonType } from 'types.ts';
 
 describe('Buttons Component', () => {
   it('renders correctly', () => {
