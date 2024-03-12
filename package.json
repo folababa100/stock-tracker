@@ -14,7 +14,9 @@
     "format": "prettier --write",
     "prepare": "husky install",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:build": "storybook build",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "framer-motion": "^11.0.8",
